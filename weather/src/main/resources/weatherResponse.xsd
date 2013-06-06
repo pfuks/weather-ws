@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://weather.tieto.com/schemas" 
+	xmlns:tns="http://weather.tieto.com/schemas" elementFormDefault="qualified">
+
+    <element name="WeatherResponse" type="tns:WeatherResponseType"></element>
+    
+    <complexType name="WeatherResponseType">
+    	<sequence>
+    		<element name="CityWeather" type="tns:CityWeatherType" 	maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="CityWeatherType">
+    	<sequence>
+    		<element name="location" type="string"></element>
+    		<element name="temp_c" type="decimal"></element>
+    		<element name="relative_humidity" type="string"></element>
+    		<element name="wind_dir" type="string"></element>
+    		<element name="weather" type="string"></element>
+    		<element name="wind_string" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>
