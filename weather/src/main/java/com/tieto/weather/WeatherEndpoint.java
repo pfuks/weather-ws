@@ -4,7 +4,7 @@ import javax.xml.bind.JAXBElement;
 import com.tieto.weather.schema.WeatherRequestType;
 import com.tieto.weather.schema.WeatherResponseType;
 
-public interface WeatherEndpointInterface {
+public interface WeatherEndpoint {
 
-	public JAXBElement<WeatherResponseType> handleWeatherRequest(JAXBElement<WeatherRequestType> weatherRequest) throws Exception;
+	public WeatherResponseType handleWeatherRequest(JAXBElement<WeatherRequestType> weatherRequest) throws Exception;
 }
