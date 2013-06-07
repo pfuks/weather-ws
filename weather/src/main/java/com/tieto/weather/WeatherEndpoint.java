@@ -6,5 +6,5 @@ import com.tieto.weather.schema.WeatherResponseType;
 
 public interface WeatherEndpoint {
 
-	public WeatherResponseType handleWeatherRequest(JAXBElement<WeatherRequestType> weatherRequest) throws Exception;
+	public JAXBElement<WeatherResponseType> handleWeatherRequest(JAXBElement<WeatherRequestType> weatherRequest) throws Exception;
 }

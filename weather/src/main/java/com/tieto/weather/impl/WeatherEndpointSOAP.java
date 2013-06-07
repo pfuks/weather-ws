@@ -9,10 +9,10 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.tieto.weather.WeatherEndpoint;
 import com.tieto.weather.mapper.WeatherMapper;
-import com.tieto.weather.schema.CityWeatherType;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequestType;
 import com.tieto.weather.schema.WeatherResponseType;
+import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.vo.WeatherRequestVO;
 import com.tieto.weather.vo.WeatherResponseVO;
 
@@ -25,19 +25,22 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 	
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "WeatherRequest")
 	@ResponsePayload
-	public WeatherResponseType handleWeatherRequest(@RequestPayload JAXBElement<WeatherRequestType> weatherRequest) {
+	public JAXBElement<WeatherResponseType> handleWeatherRequest(@RequestPayload JAXBElement<WeatherRequestType> weatherRequest) {
 		
 		WeatherRequestVO request = WeatherMapper.mapRequest(weatherRequest.getValue());
 
-		WeatherResponseType response = new WeatherResponseType();
+		WeatherResponseVO response = new WeatherResponseVO();
 		
-		CityWeatherType city = new CityWeatherType();
-		city.setLocation("Ostrava");
-		response.getCityWeather().add(city);
+		CityWeatherVO cityWeather = new CityWeatherVO();
+		cityWeather.setLocation("Ostrava");
+		cityWeather.setRelativeHumidity("40%");
+		cityWeather.setTemperatureCelsius(21.0);
+		cityWeather.setWeather("Clear");
+		cityWeather.setWindDirection("NNW");
+		cityWeather.setWindString("Calm");
+		response.getCityWeather().add(cityWeather);
 		
-//		return factory.createWeatherResponse(response);
-		
-		return WeatherMapper.mapResponse(new WeatherResponseVO()); 
+		return factory.createWeatherResponse(WeatherMapper.mapResponse(response)); 
 	}
 
 }

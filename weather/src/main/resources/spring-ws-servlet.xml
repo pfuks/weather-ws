@@ -15,12 +15,9 @@
 	    portTypeName="WeatherPort"                                                         
 	    locationUri="/"                                                       
 	    targetNamespace="http://weather.tieto.com/schemas">  	
-	    <!--                                  
-	  <sws:xsd location="/WEB-INF/classes/weatherRequest.xsd"/>     
-	  <sws:xsd location="/WEB-INF/classes/weatherResponse.xsd"/>
-	   -->
-	   <sws:xsd location="/weatherRequest.xsd"/>     
-	  <sws:xsd location="/weatherResponse.xsd"/>
+
+	   <sws:xsd location="classpath:/weatherRequest.xsd"/>     
+	   <sws:xsd location="classpath:/weatherResponse.xsd"/>
 	</sws:dynamic-wsdl>
 
 </beans>
