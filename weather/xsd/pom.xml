@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.tieto.webservice</groupId>
+	<artifactId>weather-xsd</artifactId>
+	<packaging>jar</packaging>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>XSDs for Weather Spring-WS Application</name>
+	
+	<parent>
+		<groupId>com.tieto.webservice</groupId>
+		<artifactId>weather</artifactId>
+		<version>0.0.2-SNAPSHOT</version>
+	</parent>
+	
+	<build>		
+		<plugins>
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                	<schemaDirectory>src/main/resources</schemaDirectory>
+                    <packageName>com.tieto.weather.schema</packageName>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+	
+</project>
