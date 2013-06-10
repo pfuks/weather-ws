@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
 
 	<bean class="com.tieto.weather.impl.WeatherRESTController" />
-	
-	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-        <property name="classesToBeBound">
-            <list>
-                <value>com.tieto.weather.schema.WeatherResponseType</value>            
-            </list>
-        </property>
-        <property name="schema" value="classpath:/weatherResponse.xsd"/>
-    </bean>
-	
-	
+
+
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<ref bean="jsonMessageConverter" />
+		</property>
+	</bean>
+
+	<bean id="jsonMessageConverter"	class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 </beans>
