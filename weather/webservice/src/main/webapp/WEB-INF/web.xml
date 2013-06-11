@@ -4,6 +4,15 @@
 	version="2.4">
 
 	<display-name>Tieto Weather Web Application</display-name>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/spring-weather-web-service.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
 	<servlet>
 		<servlet-name>spring-ws</servlet-name>
@@ -36,5 +45,9 @@
 		<servlet-name>rest</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 
 </web-app>

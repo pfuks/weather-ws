@@ -7,6 +7,8 @@
        http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+	<import resource="spring-weather-web-service.xml"/>	
+
     <sws:annotation-driven/>
     
 	<sws:dynamic-wsdl id="weather"                                                           
@@ -29,7 +31,7 @@
 			<bean class="com.tieto.weather.mapper.impl.WeatherResponseMapper" />
 		</property>
 		<property name="weatherService">
-			<bean class="com.tieto.weather.service.impl.WeatherServiceDBcache" />
+			<ref bean="service" />
 		</property>
 	</bean>
 	
