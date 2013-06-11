@@ -1,7 +1,8 @@
-package com.tieto.weather.mapper;
+package com.tieto.weather.mapper.impl;
 
 import java.math.BigDecimal;
 
+import com.tieto.weather.mapper.WeatherMapper;
 import com.tieto.weather.schema.CityWeatherType;
 import com.tieto.weather.schema.WeatherRequestType;
 import com.tieto.weather.schema.WeatherResponseType;
@@ -9,9 +10,9 @@ import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.vo.WeatherRequestVO;
 import com.tieto.weather.vo.WeatherResponseVO;
 
-public class WeatherMapper {
+public class WeatherMapperSimple implements WeatherMapper {
 	
-	public static WeatherRequestVO mapRequest(WeatherRequestType weatherRequest) {
+	public WeatherRequestVO mapRequest(WeatherRequestType weatherRequest) {
 		
 		WeatherRequestVO result = new WeatherRequestVO();		
 		result.getCities().addAll(weatherRequest.getCity());
@@ -20,7 +21,7 @@ public class WeatherMapper {
 	}
 
 	
-	public static WeatherResponseType mapResponse(WeatherResponseVO weatherResponse) {
+	public WeatherResponseType mapResponse(WeatherResponseVO weatherResponse) {
 		
 		WeatherResponseType result = new WeatherResponseType();	
 		for (CityWeatherVO weather : weatherResponse.getCityWeather()) {

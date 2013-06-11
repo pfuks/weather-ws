@@ -12,7 +12,7 @@ import com.tieto.weather.mapper.WeatherMapper;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequestType;
 import com.tieto.weather.schema.WeatherResponseType;
-import com.tieto.weather.vo.CityWeatherVO;
+import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.WeatherRequestVO;
 import com.tieto.weather.vo.WeatherResponseVO;
 
@@ -22,25 +22,25 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 	private static final String NAMESPACE_URI = "http://weather.tieto.com/schemas";
 	
 	private final ObjectFactory factory = new ObjectFactory();
+	private WeatherMapper mapper;
+	private WeatherService service;
 	
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "WeatherRequest")
 	@ResponsePayload
 	public JAXBElement<WeatherResponseType> handleWeatherRequest(@RequestPayload JAXBElement<WeatherRequestType> weatherRequest) {
 		
-		WeatherRequestVO request = WeatherMapper.mapRequest(weatherRequest.getValue());
+		WeatherRequestVO request = mapper.mapRequest(weatherRequest.getValue());
 
-		WeatherResponseVO response = new WeatherResponseVO();
-		
-		CityWeatherVO cityWeather = new CityWeatherVO();
-		cityWeather.setLocation("Ostrava");
-		cityWeather.setRelativeHumidity("40%");
-		cityWeather.setTemperatureCelsius(21.0);
-		cityWeather.setWeather("Clear");
-		cityWeather.setWindDirection("NNW");
-		cityWeather.setWindString("Calm");
-		response.getCityWeather().add(cityWeather);
-		
-		return factory.createWeatherResponse(WeatherMapper.mapResponse(response)); 
+		WeatherResponseVO response = service.getWeatherData(request);
+		return factory.createWeatherResponse(mapper.mapResponse(response)); 
+	}
+	
+	public void setWeatherMapper(WeatherMapper mapper) {
+		this.mapper = mapper;
+	}
+
+	public void setWeatherService(WeatherService service) {
+		this.service = service;
 	}
 
 }

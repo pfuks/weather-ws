@@ -29,7 +29,6 @@ public class WeatherRESTController {
 		cityWeather.setWindString("Calm");
 		response.getCityWeather().add(cityWeather);
     	
-
         return response;
     }
     

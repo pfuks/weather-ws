@@ -7,12 +7,8 @@
        http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.tieto.weather"/>
     <sws:annotation-driven/>
     
-    <!--To enable @RequestMapping process on type level and method level
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />-->
-
 	<sws:dynamic-wsdl id="weather"                                                           
 	    portTypeName="WeatherPort"                                                         
 	    locationUri="/soap/"                                                       
@@ -21,5 +17,14 @@
 	   <sws:xsd location="classpath:/weatherRequest.xsd"/>     
 	   <sws:xsd location="classpath:/weatherResponse.xsd"/>
 	</sws:dynamic-wsdl>
+	
+	<bean class="com.tieto.weather.impl.WeatherEndpointSOAP">
+		<property name="weatherMapper">
+			<bean class="com.tieto.weather.mapper.impl.WeatherMapperSimple" />
+		</property>
+		<property name="weatherService">
+			<bean class="com.tieto.weather.service.impl.WeatherServiceDBcache" />
+		</property>
+	</bean>
 	
 </beans>
