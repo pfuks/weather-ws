@@ -6,38 +6,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tieto.weather.vo.CityWeatherVO;
+import com.tieto.weather.mapper.Mapper;
+import com.tieto.weather.schema.ObjectFactory;
+import com.tieto.weather.schema.WeatherResponse;
+import com.tieto.weather.service.WeatherService;
+import com.tieto.weather.vo.WeatherRequestVO;
 import com.tieto.weather.vo.WeatherResponseVO;
 
 @Controller
 public class WeatherRESTController {
+	
+	private final ObjectFactory factory;
+	private Mapper<String,WeatherRequestVO> requestMapper;
+	private Mapper<WeatherResponseVO,WeatherResponse> responseMapper;
+	private WeatherService service;
+	
+	public WeatherRESTController(ObjectFactory factory) {
+		this.factory = factory;
+	}
 		
-    @RequestMapping(value="/{city}", method=RequestMethod.GET)
+    @RequestMapping(value="/rest/{city}", method=RequestMethod.GET)
     @ResponseBody
-    public WeatherResponseVO getCityWeather(@PathVariable("city") String city) {
+    public WeatherResponse getCityWeather(@PathVariable("city") String city) {
         
-    	System.out.println("Hello from REST!! GET" + city );
+    	WeatherRequestVO request = requestMapper.map(city, new WeatherRequestVO());
+    	WeatherResponseVO response = service.getWeatherData(request);
     	
-		WeatherResponseVO response = new WeatherResponseVO();
-		
-		CityWeatherVO cityWeather = new CityWeatherVO();
-		cityWeather.setLocation("Ostrava");
-		cityWeather.setRelativeHumidity("40%");
-		cityWeather.setTemperatureCelsius(21.0);
-		cityWeather.setWeather("Clear");
-		cityWeather.setWindDirection("NNW");
-		cityWeather.setWindString("Calm");
-		response.getCityWeather().add(cityWeather);
-    	
-        return response;
+		// TODO use XSD mapper also here?
+    	return responseMapper.map(response, factory.createWeatherResponse()); 
     }
     
-    @RequestMapping(value="/", method=RequestMethod.GET)
-    public void getAllWeathers() {
+    @RequestMapping(value="/rest", method=RequestMethod.GET)
+    @ResponseBody
+    public WeatherResponse getAllWeathers() {
         
-    	System.out.println("Hello from REST!! ALL cities");
-
-        //return user;
+    	WeatherRequestVO request = requestMapper.map(null, new WeatherRequestVO());
+    	WeatherResponseVO response = service.getWeatherData(request);
+    	
+		// use XSD mapper also here?
+    	return responseMapper.map(response, factory.createWeatherResponse()); 
     }   
+    
+    public void setWeatherRequestMapper( Mapper<String,WeatherRequestVO> requestMapper) {
+		this.requestMapper = requestMapper;
+	}
+	
+	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {
+		this.responseMapper = responseMapper;
+	}
 
+	public void setWeatherService(WeatherService service) {
+		this.service = service;
+	}
 }

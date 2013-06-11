@@ -4,9 +4,24 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean class="com.tieto.weather.impl.WeatherRESTController" />
+	<bean class="com.tieto.weather.impl.WeatherRESTController">
+		<constructor-arg>
+			<bean class="com.tieto.weather.schema.ObjectFactory" />
+		</constructor-arg>
+		<property name="weatherRequestMapper">
+			<bean class="com.tieto.weather.mapper.impl.WeatherRequestMapperREST" />
+		</property>
+		<property name="weatherResponseMapper">
+			<bean class="com.tieto.weather.mapper.impl.WeatherResponseMapper" />
+		</property>
+		<property name="weatherService">
+			<bean class="com.tieto.weather.service.impl.WeatherServiceDBcache" />
+		</property>
+	</bean>
 
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="alwaysUseFullPath" value="true"/>
+	</bean>
 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">

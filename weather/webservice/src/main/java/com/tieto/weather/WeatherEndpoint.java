@@ -1,10 +1,9 @@
 package com.tieto.weather;
 
-import javax.xml.bind.JAXBElement;
-import com.tieto.weather.schema.WeatherRequestType;
-import com.tieto.weather.schema.WeatherResponseType;
+import com.tieto.weather.schema.WeatherRequest;
+import com.tieto.weather.schema.WeatherResponse;
 
 public interface WeatherEndpoint {
 
-	public JAXBElement<WeatherResponseType> handleWeatherRequest(JAXBElement<WeatherRequestType> weatherRequest) throws Exception;
+	public WeatherResponse handleWeatherRequest(WeatherRequest weatherRequest) throws Exception;
 }

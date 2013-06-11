@@ -1,6 +1,8 @@
 package com.tieto.weather.service.impl;
 
 
+import java.util.ArrayList;
+
 import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.vo.WeatherRequestVO;
@@ -14,7 +16,8 @@ public class WeatherServiceDBcache implements WeatherService{
 			WeatherResponseVO response = new WeatherResponseVO();
 			
 			CityWeatherVO cityWeather = new CityWeatherVO();
-			cityWeather.setLocation("Ostrava");
+			ArrayList<String> arrayList = (ArrayList<String>)request.getCities();
+			cityWeather.setLocation((arrayList.isEmpty()? "none" : arrayList.get(0)));
 			cityWeather.setRelativeHumidity("40%");
 			cityWeather.setTemperatureCelsius(21.0);
 			cityWeather.setWeather("Clear");

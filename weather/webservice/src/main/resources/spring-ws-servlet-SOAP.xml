@@ -19,8 +19,14 @@
 	</sws:dynamic-wsdl>
 	
 	<bean class="com.tieto.weather.impl.WeatherEndpointSOAP">
-		<property name="weatherMapper">
-			<bean class="com.tieto.weather.mapper.impl.WeatherMapperSimple" />
+		<constructor-arg>
+			<bean class="com.tieto.weather.schema.ObjectFactory" />
+		</constructor-arg>
+		<property name="weatherRequestMapper">
+			<bean class="com.tieto.weather.mapper.impl.WeatherRequestMapperSOAP" />
+		</property>
+		<property name="weatherResponseMapper">
+			<bean class="com.tieto.weather.mapper.impl.WeatherResponseMapper" />
 		</property>
 		<property name="weatherService">
 			<bean class="com.tieto.weather.service.impl.WeatherServiceDBcache" />

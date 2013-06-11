@@ -2,13 +2,13 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://weather.tieto.com/schemas" 
 	xmlns:tns="http://weather.tieto.com/schemas" elementFormDefault="qualified">
 
-    <element name="WeatherResponse" type="tns:WeatherResponseType"></element>
-    
-    <complexType name="WeatherResponseType">
-    	<sequence>
-    		<element name="CityWeather" type="tns:CityWeatherType" 	maxOccurs="unbounded" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
+    <element name="WeatherResponse">
+	    <complexType>
+	    	<sequence>
+	    		<element name="CityWeather" type="tns:CityWeatherType" 	maxOccurs="unbounded" minOccurs="0"></element>
+	    	</sequence>
+	    </complexType>
+    </element>
 
     <complexType name="CityWeatherType">
     	<sequence>
