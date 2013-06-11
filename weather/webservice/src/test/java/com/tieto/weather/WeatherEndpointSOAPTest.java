@@ -17,7 +17,11 @@ import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.xml.transform.StringSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/spring-ws-servlet-SOAP.xml") 
+@ContextConfiguration(
+	{
+		"/spring-ws-servlet-SOAP.xml", "/spring-weather-web-service.xml"
+	}
+) 
 public class WeatherEndpointSOAPTest {
 	
 	@Autowired
