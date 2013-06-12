@@ -49,7 +49,7 @@ public class WeatherRESTControllerTest {
     public void createClient() {
     	 this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
     }
-    /*
+
     @Test
     public void testGetCityWeather() throws Exception {
     	
@@ -89,5 +89,4 @@ public class WeatherRESTControllerTest {
         .andExpect(status().isOk()).andExpect(content().string(responseString));
     	
     }
-    */
 }

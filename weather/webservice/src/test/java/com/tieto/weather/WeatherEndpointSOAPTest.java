@@ -45,8 +45,8 @@ public class WeatherEndpointSOAPTest {
     public void createClient() {
         mockClient = MockWebServiceClient.createClient(applicationContext);
     }
-/*
-	@Test
+
+    @Test
 	public void testHandleWeatherRequest() throws Exception {
 		WeatherRequest request = factory.createWeatherRequest();
 		request.getCity().add("Ostrava");
@@ -86,5 +86,4 @@ public class WeatherEndpointSOAPTest {
 
 	    mockClient.sendRequest(withPayload(requestSource)).andExpect(payload(responseSource));           
 	}
-   */
 }
