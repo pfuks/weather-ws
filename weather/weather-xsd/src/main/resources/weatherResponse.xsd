@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://weather.tieto.com/schemas" 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://weather.tieto.com/schemas" 
 	xmlns:tns="http://weather.tieto.com/schemas" elementFormDefault="qualified">
 
-    <element name="WeatherResponse">
-	    <complexType>
-	    	<sequence>
-	    		<element name="CityWeather" type="tns:CityWeatherType" 	maxOccurs="unbounded" minOccurs="0"></element>
-	    	</sequence>
-	    </complexType>
-    </element>
+    <xs:element name="WeatherResponse">
+	    <xs:complexType>
+	    	<xs:sequence>
+	    		<xs:element name="CityWeather" type="tns:CityWeatherType" maxOccurs="unbounded" minOccurs="0"></xs:element>
+	    	</xs:sequence>
+	    </xs:complexType>
+    </xs:element>
 
-    <complexType name="CityWeatherType">
-    	<sequence>
-    		<element name="location" type="string"></element>
-    		<element name="temp_c" type="decimal"></element>
-    		<element name="relative_humidity" type="string"></element>
-    		<element name="wind_dir" type="string"></element>
-    		<element name="weather" type="string"></element>
-    		<element name="wind_string" type="string"></element>
-    	</sequence>
-    </complexType>
-</schema>
+    <xs:complexType name="CityWeatherType">
+    	<xs:sequence>
+    		<xs:element name="location" type="xs:string"></xs:element>
+    		<xs:element name="temp_c" type="xs:decimal"></xs:element>
+    		<xs:element name="relative_humidity" type="xs:string"></xs:element>
+    		<xs:element name="wind_dir" type="xs:string"></xs:element>
+    		<xs:element name="weather" type="xs:string"></xs:element>
+    		<xs:element name="wind_string" type="xs:string"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+</xs:schema>
