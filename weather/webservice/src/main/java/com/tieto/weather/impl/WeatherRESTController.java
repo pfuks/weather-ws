@@ -46,7 +46,7 @@ public class WeatherRESTController {
     @ResponseBody
     public WeatherResponse getAllWeathers() {
         
-    	WeatherRequestVO request = requestMapper.map(null, new WeatherRequestVO());
+    	WeatherRequestVO request = new WeatherRequestVO();
     	WeatherResponseVO response = null;
 		try {
 			response = service.getWeatherData(request);

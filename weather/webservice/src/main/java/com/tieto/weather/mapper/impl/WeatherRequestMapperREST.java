@@ -7,9 +7,7 @@ public class WeatherRequestMapperREST implements Mapper<String,WeatherRequestVO>
 	
 	public WeatherRequestVO map(String source, WeatherRequestVO response) {
 		
-		if(source != null) {
-			response.getCities().add(source);
-		}
+		response.getCities().add(source);
 		
 		return response; 
 	}
