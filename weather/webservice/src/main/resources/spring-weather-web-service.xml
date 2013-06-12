@@ -6,4 +6,6 @@
 
 	<bean id="service" class="com.tieto.weather.service.impl.WeatherServiceDBcache" />	
 	
+	<bean id="objectFactory" class="com.tieto.weather.schema.ObjectFactory" />
+	
 </beans>

@@ -3,7 +3,10 @@ package com.tieto.weather;
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
 
-import javax.xml.transform.Source;
+import java.math.BigDecimal;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.util.JAXBSource;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,7 +17,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.server.MockWebServiceClient;
-import org.springframework.xml.transform.StringSource;
+
+import com.tieto.weather.schema.CityWeatherType;
+import com.tieto.weather.schema.ObjectFactory;
+import com.tieto.weather.schema.WeatherRequest;
+import com.tieto.weather.schema.WeatherResponse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -27,6 +34,8 @@ public class WeatherEndpointSOAPTest {
 	@Autowired
     private ApplicationContext applicationContext;
     private MockWebServiceClient mockClient;
+    @Autowired
+    private ObjectFactory factory;
 
 	@After
 	public void tearDown() throws Exception {
@@ -38,24 +47,44 @@ public class WeatherEndpointSOAPTest {
     }
 
 	@Test
-	public void testHandleWeatherRequest() {
-		 Source requestPayload = new StringSource("<sch:WeatherRequest xmlns:sch='http://weather.tieto.com/schemas'>" +
-     	        "<sch:City>Ostrava</sch:City>" +
-     	      "</sch:WeatherRequest>");
-     
-		 Source responsePayload = new StringSource(
-     	      "<ns2:WeatherResponse xmlns:ns2='http://weather.tieto.com/schemas'>" +
-     	        "<ns2:CityWeather>" +
-     	           "<ns2:location>Ostrava</ns2:location>" +
-     	           "<ns2:temp_c>21.0</ns2:temp_c>" +
-     	           "<ns2:relative_humidity>40%</ns2:relative_humidity>" +
-     	           "<ns2:wind_dir>NNW</ns2:wind_dir>" +
-     	           "<ns2:weather>Clear</ns2:weather>" +
-     	           "<ns2:wind_string>Calm</ns2:wind_string>" +
-     	        "</ns2:CityWeather>" +
-     	      "</ns2:WeatherResponse>");
+	public void testHandleWeatherRequest() throws Exception {
+		WeatherRequest request = factory.createWeatherRequest();
+		request.getCity().add("Ostrava");
+		 
+		WeatherResponse response = factory.createWeatherResponse();
+		CityWeatherType cityWeather = factory.createCityWeatherType();
+		cityWeather.setLocation("Ostrava");
+		cityWeather.setRelativeHumidity("40%");
+		cityWeather.setTempC(BigDecimal.valueOf(21.0));
+		cityWeather.setWeather("Clear");
+		cityWeather.setWindDir("NNW");
+		cityWeather.setWindString("Calm");
+		response.getCityWeather().add(cityWeather);
+		
+		JAXBSource requestSource = new JAXBSource(JAXBContext.newInstance(request.getClass()), request);
+		JAXBSource responseSource = new JAXBSource(JAXBContext.newInstance(response.getClass()), response);
 
-	    mockClient.sendRequest(withPayload(requestPayload)).andExpect(payload(responsePayload));           
+	    mockClient.sendRequest(withPayload(requestSource)).andExpect(payload(responseSource));           
+	}
+	
+	@Test
+	public void testHandleWeatherAllCitiesRequest() throws Exception {
+		WeatherRequest request = factory.createWeatherRequest();
+		 
+		WeatherResponse response = factory.createWeatherResponse();
+		CityWeatherType cityWeather = factory.createCityWeatherType();
+		cityWeather.setLocation("none");
+		cityWeather.setRelativeHumidity("40%");
+		cityWeather.setTempC(BigDecimal.valueOf(21.0));
+		cityWeather.setWeather("Clear");
+		cityWeather.setWindDir("NNW");
+		cityWeather.setWindString("Calm");
+		response.getCityWeather().add(cityWeather);
+		
+		JAXBSource requestSource = new JAXBSource(JAXBContext.newInstance(request.getClass()), request);
+		JAXBSource responseSource = new JAXBSource(JAXBContext.newInstance(response.getClass()), response);
+
+	    mockClient.sendRequest(withPayload(requestSource)).andExpect(payload(responseSource));           
 	}
    
 }

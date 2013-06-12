@@ -6,7 +6,7 @@
 
 	<bean class="com.tieto.weather.impl.WeatherRESTController">
 		<constructor-arg>
-			<bean class="com.tieto.weather.schema.ObjectFactory" />
+			<ref bean="objectFactory" />
 		</constructor-arg>
 		<property name="weatherRequestMapper">
 			<bean class="com.tieto.weather.mapper.impl.WeatherRequestMapperREST" />
@@ -25,9 +25,9 @@
 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
-			<ref bean="jsonMessageConverter" />
+			<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 		</property>
 	</bean>
 
-	<bean id="jsonMessageConverter"	class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+	<bean id="jsonObjectMapper"	class="org.codehaus.jackson.map.ObjectMapper" />
 </beans>

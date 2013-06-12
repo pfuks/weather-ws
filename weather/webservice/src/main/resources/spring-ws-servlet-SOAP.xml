@@ -20,7 +20,7 @@
 	
 	<bean class="com.tieto.weather.impl.WeatherEndpointSOAP">
 		<constructor-arg>
-			<bean class="com.tieto.weather.schema.ObjectFactory" />
+			<ref bean="objectFactory" />
 		</constructor-arg>
 		<property name="weatherRequestMapper">
 			<bean class="com.tieto.weather.mapper.impl.WeatherRequestMapperSOAP" />
