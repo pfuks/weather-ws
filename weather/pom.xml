@@ -9,8 +9,9 @@
 	<name>Parent POM for Weather Spring-WS Application</name>
 	
 	<modules>
-		<module>xsd</module>		
+		<module>weather-xsd</module>
 		<module>webservice</module>
+		<module>wunderground-xsd</module>
 	</modules>	
 	
 	<dependencyManagement>
@@ -20,6 +21,11 @@
 				<artifactId>weather-xsd</artifactId>
 				<version>0.0.2-SNAPSHOT</version>
 			</dependency>
+			<dependency>
+				<groupId>com.tieto.webservice</groupId>
+				<artifactId>wunderground-xsd</artifactId>
+				<version>0.0.2-SNAPSHOT</version>
+		    </dependency>
 			<dependency>
 				<groupId>org.springframework.ws</groupId>
 				<artifactId>spring-ws-core</artifactId>

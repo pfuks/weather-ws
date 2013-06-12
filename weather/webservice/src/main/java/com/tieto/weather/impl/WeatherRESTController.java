@@ -30,7 +30,13 @@ public class WeatherRESTController {
     public WeatherResponse getCityWeather(@PathVariable("city") String city) {
         
     	WeatherRequestVO request = requestMapper.map(city, new WeatherRequestVO());
-    	WeatherResponseVO response = service.getWeatherData(request);
+    	WeatherResponseVO response = null;
+		try {
+			response = service.getWeatherData(request);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
 		// TODO use XSD mapper also here?
     	return responseMapper.map(response, factory.createWeatherResponse()); 
@@ -41,7 +47,13 @@ public class WeatherRESTController {
     public WeatherResponse getAllWeathers() {
         
     	WeatherRequestVO request = requestMapper.map(null, new WeatherRequestVO());
-    	WeatherResponseVO response = service.getWeatherData(request);
+    	WeatherResponseVO response = null;
+		try {
+			response = service.getWeatherData(request);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
 		// use XSD mapper also here?
     	return responseMapper.map(response, factory.createWeatherResponse()); 

@@ -5,5 +5,5 @@ import com.tieto.weather.vo.WeatherResponseVO;
 
 public interface WeatherService {
 
-	public WeatherResponseVO getWeatherData(WeatherRequestVO request);
+	public WeatherResponseVO getWeatherData(WeatherRequestVO request) throws Exception;
 }

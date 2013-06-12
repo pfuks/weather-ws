@@ -31,6 +31,10 @@
 			<artifactId>weather-xsd</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.tieto.webservice</groupId>
+			<artifactId>wunderground-xsd</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-core</artifactId>
 		</dependency>

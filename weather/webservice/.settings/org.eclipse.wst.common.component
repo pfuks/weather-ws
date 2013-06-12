@@ -7,6 +7,9 @@
         <dependent-module archiveName="weather-xsd-0.0.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/weather-xsd/weather-xsd">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="wunderground-xsd-0.0.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/wunderground-xsd/wunderground-xsd">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="weather"/>
         <property name="java-output-path" value="/weather-ws/target/classes"/>
     </wb-module>
