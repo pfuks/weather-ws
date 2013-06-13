@@ -1,11 +1,10 @@
 package com.tieto.weather.service;
 
-import com.tieto.weather.vo.WeatherRequestVO;
-import com.tieto.weather.vo.WeatherResponseVO;
+import com.tieto.weather.vo.CityWeatherVO;
 
 public interface WeatherService {
 
-	public WeatherResponseVO getWeatherData(WeatherRequestVO request) throws Exception;
+	public CityWeatherVO getWeatherData(String city) throws Exception;
 	
-	public WeatherResponseVO getWeatherData2(WeatherRequestVO request) throws Exception;
+	public CityWeatherVO updateWeatherData(String city) throws Exception;
 }

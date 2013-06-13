@@ -10,6 +10,11 @@ public class WeatherResponseVO {
 	public WeatherResponseVO() {
 		this.cityWeather = new ArrayList<CityWeatherVO>();
 	}
+	
+	public WeatherResponseVO(CityWeatherVO city) {
+		this.cityWeather = new ArrayList<CityWeatherVO>();
+		this.cityWeather.add(city);
+	}
 
 	public Collection<CityWeatherVO> getCityWeather() {
 		return cityWeather;

@@ -2,23 +2,19 @@ package com.tieto.weather.mapper.impl;
 
 import com.tieto.weather.mapper.Mapper;
 import com.tieto.weather.vo.CityWeatherVO;
-import com.tieto.weather.vo.WeatherResponseVO;
 import com.tieto.weather.wunderground.schema.Response;
 
-public class WundergroundResponseMapper implements Mapper<Response, WeatherResponseVO> {
+public class WundergroundResponseMapper implements Mapper<Response, CityWeatherVO> {
 
-	public WeatherResponseVO map(Response source, WeatherResponseVO target) {
+	public CityWeatherVO map(Response source, CityWeatherVO target) {
 		
-		CityWeatherVO city = new CityWeatherVO(); 
-		city.setLocation(source.getCurrentObservation().getDisplayLocation().getFull());
-		city.setRelativeHumidity(source.getCurrentObservation().getRelativeHumidity());
-		city.setTemperatureCelsius(Double.valueOf(source.getCurrentObservation().getTempC()));
-		city.setWeather(source.getCurrentObservation().getWeather());
-		city.setWindDirection(source.getCurrentObservation().getWindDir());
-		city.setWindString(source.getCurrentObservation().getWindString());
-		
-		target.getCityWeather().add(city);
-		
+		target.setLocation(source.getCurrentObservation().getDisplayLocation().getFull());
+		target.setRelativeHumidity(source.getCurrentObservation().getRelativeHumidity());
+		target.setTemperatureCelsius(Double.valueOf(source.getCurrentObservation().getTempC()));
+		target.setWeather(source.getCurrentObservation().getWeather());
+		target.setWindDirection(source.getCurrentObservation().getWindDir());
+		target.setWindString(source.getCurrentObservation().getWindString());
+				
 		return target;
 	}
 

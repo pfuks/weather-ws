@@ -28,11 +28,10 @@ public class WeatherRESTController {
     @RequestMapping(value="/rest/{city}", method=RequestMethod.GET)
     @ResponseBody
     public WeatherResponse getCityWeather(@PathVariable("city") String city) {
-        
-    	WeatherRequestVO request = requestMapper.map(city, new WeatherRequestVO());
+            	
     	WeatherResponseVO response = null;
 		try {
-			response = service.getWeatherData(request);
+			response = new WeatherResponseVO(service.getWeatherData(city));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +48,7 @@ public class WeatherRESTController {
     	WeatherRequestVO request = new WeatherRequestVO();
     	WeatherResponseVO response = null;
 		try {
-			response = service.getWeatherData(request);
+			response = null;//service.getWeatherData(request);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

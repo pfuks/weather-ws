@@ -4,22 +4,26 @@
 	xmlns:oxm="http://www.springframework.org/schema/oxm"
   	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd
-	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
-	
-	<cache:annotation-driven />
+	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+	ttp://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+			      
+   	<cache:annotation-driven />
 	
 	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
 	    <property name="caches">
 		    <set>
-		        <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="test"/>
+		        <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="weatherCache"/>
 		    </set>
 	    </property>
 	</bean>
 	
-	<bean id="service" class="com.tieto.weather.service.impl.WeatherServiceDBcache">
+	<bean id="service" class="com.tieto.weather.service.impl.WeatherServiceCached">
 		<property name="unmarshaller" ref="oxm-unmarshaller"/>
 		<property name="wundergroundResponseMapper">
 			<bean class="com.tieto.weather.mapper.impl.WundergroundResponseMapper" />
@@ -30,4 +34,27 @@
 	
 	<bean id="weatherObjectFactory" class="com.tieto.weather.schema.ObjectFactory" />
 		
+	<bean id="wundergroundScheduler" class="com.tieto.weather.scheduler.WeatherScheduler">
+		<property name="weatherService">
+			<ref bean="service"/>
+		</property>		
+	</bean>	
+	
+	<task:scheduled-tasks>
+		<task:scheduled ref="wundergroundScheduler" method="readWeathers" fixed-rate="${cache.time}"/>
+	</task:scheduled-tasks>
+	
+	<context:property-placeholder location="classpath:config.properties"/>
+
+	<bean id="cities" class="com.tieto.weather.vo.CitiesVO">
+		<property name="city1Name" value="${city1.name}" />
+		<property name="city1Country" value="${city1.state}" />
+		<property name="city2Name" value="${city2.name}" />
+		<property name="city2Country" value="${city2.state}" />
+		<property name="city3Name" value="${city3.name}" />
+		<property name="city3Country" value="${city3.state}" />
+		<property name="city4Name" value="${city4.name}" />
+		<property name="city4Country" value="${city4.state}" />
+	</bean>
+	
 </beans>
