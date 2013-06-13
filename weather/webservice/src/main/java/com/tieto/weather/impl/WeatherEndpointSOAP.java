@@ -37,6 +37,7 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 		WeatherRequestVO request = requestMapper.map(weatherRequest, new WeatherRequestVO());
 		WeatherResponseVO response = null;
 		try {
+			response = service.getWeatherData2(request);
 			response = service.getWeatherData(request);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

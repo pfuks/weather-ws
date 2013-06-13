@@ -6,6 +6,8 @@ import java.net.URLConnection;
 
 import javax.xml.transform.stream.StreamSource;
 
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.oxm.Unmarshaller;
 
 import com.tieto.weather.mapper.Mapper;
@@ -19,7 +21,9 @@ public class WeatherServiceDBcache implements WeatherService {
 	private Unmarshaller unmarshaller;
 	private Mapper<Response, WeatherResponseVO> mapper;
 
+	@Cacheable(value = "test")
 	public WeatherResponseVO getWeatherData(WeatherRequestVO request) throws Exception {
+		System.out.println("GETC");
 /*
 		WeatherResponseVO response = new WeatherResponseVO();
 		// Response wundergroundResponse = factory.createResponse();
@@ -47,7 +51,23 @@ public class WeatherServiceDBcache implements WeatherService {
 		return mapper.map(wundergroundResponse, new WeatherResponseVO());
 
 	}
+	
+	@CachePut(value = "test")
+	public WeatherResponseVO getWeatherData2(WeatherRequestVO request) throws Exception {
+		System.out.println("PUTC");
+		String urlString = "http://api.wunderground.com/api/23a8ee338cc21fca/geolookup/conditions/forecast/q/czech/bohumin.xml";
+		URL url = new URL(urlString);
+		URLConnection conn = url.openConnection();
+		InputStream inputStream = conn.getInputStream();
+		
+		Response wundergroundResponse = (Response) this.unmarshaller
+				.unmarshal(new StreamSource(inputStream));
+		
+		
+		return mapper.map(wundergroundResponse, new WeatherResponseVO());
 
+	}
+	
 	public void setUnmarshaller(Unmarshaller unmarshaller) {
 		this.unmarshaller = unmarshaller;
 	}
