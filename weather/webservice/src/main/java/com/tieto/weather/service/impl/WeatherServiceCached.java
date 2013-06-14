@@ -12,6 +12,7 @@ import org.springframework.oxm.Unmarshaller;
 
 import com.tieto.weather.mapper.Mapper;
 import com.tieto.weather.service.WeatherService;
+import com.tieto.weather.vo.CitiesVO;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
@@ -19,6 +20,9 @@ public class WeatherServiceCached implements WeatherService {
 
 	private Unmarshaller unmarshaller;
 	private Mapper<Response, CityWeatherVO> mapper;
+	private String apiKey;
+	private String url;
+	private CitiesVO cities;
 
 	@Cacheable(value = "weatherCache")
 	public CityWeatherVO getWeatherData(String city) throws Exception {
@@ -37,8 +41,9 @@ public class WeatherServiceCached implements WeatherService {
 	
 	private CityWeatherVO getCityWeather(String city) throws Exception {
 				
-		String urlString = "http://api.wunderground.com/api/23a8ee338cc21fca/geolookup/conditions/forecast/q/czech/bohumin.xml";
-		URL url = new URL(urlString);
+		String configuredURL = String.format(url, apiKey, cities.getCities().get(city), city);
+		
+		URL url = new URL(configuredURL);//TODO URI
 		URLConnection conn = url.openConnection();
 		InputStream inputStream = conn.getInputStream();
 		
@@ -55,5 +60,17 @@ public class WeatherServiceCached implements WeatherService {
 	
 	public void setWundergroundResponseMapper(Mapper<Response, CityWeatherVO> mapper) {
 		this.mapper = mapper;
+	}
+
+	public void setApiKey(String apiKey) {
+		this.apiKey = apiKey;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setCities(CitiesVO cities) {
+		this.cities = cities;
 	}
 }

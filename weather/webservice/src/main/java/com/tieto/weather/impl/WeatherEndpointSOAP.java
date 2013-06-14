@@ -11,6 +11,7 @@ import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
+import com.tieto.weather.vo.CitiesVO;
 import com.tieto.weather.vo.WeatherResponseVO;
 
 
@@ -22,27 +23,39 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 	private final ObjectFactory factory;
 	private Mapper<WeatherResponseVO,WeatherResponse> responseMapper;
 	private WeatherService service;
+	private CitiesVO cities;
 	
 	public WeatherEndpointSOAP(ObjectFactory factory) {
 		this.factory = factory;
 	}
 	
+	
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "WeatherRequest")
 	@ResponsePayload
-	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) {
+	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws Exception {
 		
 		WeatherResponseVO response = new WeatherResponseVO();
 		
-		for (String city : weatherRequest.getCity()) {
-			try {
-				response.getCityWeather().add(service.getWeatherData(city));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if(weatherRequest.getCity().isEmpty()) {
+			for (String city : cities.getCities().keySet()) {
+				try {
+					response.getCityWeather().add(service.getWeatherData(city));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
 			}
-			
+		} else {
+			for (String city : weatherRequest.getCity()) {
+				try {
+					response.getCityWeather().add(service.getWeatherData(city));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
-
+		
 		return responseMapper.map(response, factory.createWeatherResponse()); 
 	}
 	
@@ -52,6 +65,10 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 
 	public void setWeatherService(WeatherService service) {
 		this.service = service;
+	}
+	
+	public void setCities(CitiesVO cities) {
+		this.cities = cities;
 	}
 
 }

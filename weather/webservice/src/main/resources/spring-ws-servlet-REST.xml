@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean class="com.tieto.weather.impl.WeatherRESTController">
+	<bean id="controller" class="com.tieto.weather.impl.WeatherRESTController">
 		<constructor-arg>
 			<ref bean="weatherObjectFactory" />
 		</constructor-arg>
@@ -14,6 +14,7 @@
 		<property name="weatherService">
 			<ref bean="service" />
 		</property>
+		<property name="cities" ref="cities"/>
 	</bean>
 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
@@ -27,4 +28,18 @@
 	</bean>
 
 	<bean id="jsonObjectMapper"	class="org.codehaus.jackson.map.ObjectMapper" />
+	
+	<!-- 
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultStatusCode" value="404"/>
+        <property name="d"></property>
+        <property name="exceptionMappings">
+            <value>java.lang.Exception</value>
+        </property>
+    </bean>
+     
+    <bean id="hadler" class="org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler">
+    </bean>
+    -->
+   
 </beans>
