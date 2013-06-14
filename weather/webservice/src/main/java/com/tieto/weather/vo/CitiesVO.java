@@ -1,7 +1,20 @@
 package com.tieto.weather.vo;
 
-public class CitiesVO {
+import java.util.Map;
 
+public class CitiesVO {
+	
+	private Map<String, String> cities;
+	
+	public CitiesVO(Map<String, String> map) {
+		this.cities = map;
+	}
+	
+	public Map<String, String> getCities() {
+		return this.cities;
+	}
+	
+/*
 	public String getCity1Name() {
 		return city1Name;
 	}
@@ -51,6 +64,7 @@ public class CitiesVO {
 		this.city4Country = city4Country;
 	}
 		
+
 	private String city1Name;
 	private String city1Country;
 	private String city2Name;
@@ -59,5 +73,6 @@ public class CitiesVO {
 	private String city3Country;
 	private String city4Name;
 	private String city4Country;
+*/	
 		
 }
