@@ -5,5 +5,11 @@ import com.tieto.weather.schema.WeatherResponse;
 
 public interface WeatherEndpoint {
 
-	public WeatherResponse handleWeatherRequest(WeatherRequest weatherRequest) throws Exception;
+	/**
+	 * Endpoint method for getting weather data.
+	 * 
+	 * @param weatherRequest Contains list of cities.
+	 * @return Weather data for cities from request.
+	 */
+	public WeatherResponse handleWeatherRequest(WeatherRequest weatherRequest);
 }

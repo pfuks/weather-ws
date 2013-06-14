@@ -13,6 +13,9 @@ import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.WeatherRequestVO;
 import com.tieto.weather.vo.WeatherResponseVO;
 
+/**
+ * Endpoint for REST calls.
+ */
 @Controller
 public class WeatherRESTController {
 	
@@ -24,6 +27,12 @@ public class WeatherRESTController {
 		this.factory = factory;
 	}
 		
+	/**
+	 * Endpoint method for getting weather data for specific city.
+	 * 
+	 * @param city City from URL.
+	 * @return Weather data for city from request.
+	 */
     @RequestMapping(value="/rest/{city}", method=RequestMethod.GET)
     @ResponseBody
     public WeatherResponse getCityWeather(@PathVariable("city") String city) {
@@ -40,6 +49,11 @@ public class WeatherRESTController {
     	return responseMapper.map(response, factory.createWeatherResponse()); 
     }
     
+    /**
+     * Endpoint method for getting weather data for all supported cities.
+     * 
+     * @return Weather data for supported cities.
+     */
     @RequestMapping(value="/rest", method=RequestMethod.GET)
     @ResponseBody
     public WeatherResponse getAllWeathers() {

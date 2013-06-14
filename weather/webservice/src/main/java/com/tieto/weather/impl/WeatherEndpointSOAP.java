@@ -13,7 +13,9 @@ import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.WeatherResponseVO;
 
-
+/**
+ * Endpoint for SOAP calls.
+ */
 @Endpoint
 public class WeatherEndpointSOAP implements WeatherEndpoint{
 
