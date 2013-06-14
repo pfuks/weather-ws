@@ -8,9 +8,6 @@
 		<constructor-arg>
 			<ref bean="weatherObjectFactory" />
 		</constructor-arg>
-		<property name="weatherRequestMapper">
-			<bean class="com.tieto.weather.mapper.impl.WeatherRequestMapperREST" />
-		</property>
 		<property name="weatherResponseMapper">
 			<bean class="com.tieto.weather.mapper.impl.WeatherResponseMapper" />
 		</property>

@@ -17,7 +17,6 @@ import com.tieto.weather.vo.WeatherResponseVO;
 public class WeatherRESTController {
 	
 	private final ObjectFactory factory;
-	private Mapper<String,WeatherRequestVO> requestMapper;
 	private Mapper<WeatherResponseVO,WeatherResponse> responseMapper;
 	private WeatherService service;
 	
@@ -58,10 +57,6 @@ public class WeatherRESTController {
     	return responseMapper.map(response, factory.createWeatherResponse()); 
     }   
     
-    public void setWeatherRequestMapper( Mapper<String,WeatherRequestVO> requestMapper) {
-		this.requestMapper = requestMapper;
-	}
-	
 	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {
 		this.responseMapper = responseMapper;
 	}

@@ -11,7 +11,6 @@ import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
-import com.tieto.weather.vo.WeatherRequestVO;
 import com.tieto.weather.vo.WeatherResponseVO;
 
 
@@ -21,7 +20,6 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 	private static final String NAMESPACE_URI = "http://weather.tieto.com/schemas";
 	
 	private final ObjectFactory factory;
-	private Mapper<WeatherRequest,WeatherRequestVO> requestMapper;
 	private Mapper<WeatherResponseVO,WeatherResponse> responseMapper;
 	private WeatherService service;
 	
@@ -46,10 +44,6 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 		}
 
 		return responseMapper.map(response, factory.createWeatherResponse()); 
-	}
-	
-	public void setWeatherRequestMapper( Mapper<WeatherRequest,WeatherRequestVO> requestMapper) {
-		this.requestMapper = requestMapper;
 	}
 	
 	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {
