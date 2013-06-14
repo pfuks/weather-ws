@@ -2,13 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:sws="http://www.springframework.org/schema/web-services"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+       http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
 
     <sws:annotation-driven/>
-    <context:annotation-config/>
     
 	<sws:dynamic-wsdl id="weather"                                                           
 	    portTypeName="WeatherPort"                                                         
@@ -32,10 +29,12 @@
 		<property name="cities" ref="cities"/>
 	</bean>
 	
-    <bean id="exceptionResolver" class="org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver">
-        <property name="mappedEndpoints" ref="endpoint"/>
+    <bean id="exceptionResolver"
+        class="org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver">
+        <property name="defaultFault" value="SERVER"/>
+        <property name="order" value="1"/>
         <property name="exceptionMappings">
-            <value>org.springframework.oxm.ValidationFailureException</value>
+            <value>java.lang.Exception=CLIENT,Invalid request</value>
         </property>
     </bean>
 </beans>

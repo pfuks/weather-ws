@@ -1,5 +1,6 @@
 package com.tieto.weather.impl;
 
+import org.springframework.oxm.ValidationFailureException;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -34,19 +35,20 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 	
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "WeatherRequest")
 	@ResponsePayload
-	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws Exception {
+	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws ValidationFailureException {
 		
 		WeatherResponseVO response = new WeatherResponseVO();
 		
 		if(weatherRequest.getCity().isEmpty()) {
-			for (String city : cities.getCities().keySet()) {
-				try {
-					response.getCityWeather().add(service.getWeatherData(city));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}				
-			}
+			throw new ValidationFailureException("sadsfg");
+//			for (String city : cities.getCities().keySet()) {
+//				try {
+//					response.getCityWeather().add(service.getWeatherData(city));
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}				
+//			}
 		} else {
 			for (String city : weatherRequest.getCity()) {
 				try {
