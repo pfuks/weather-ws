@@ -6,7 +6,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.tieto.weather.WeatherEndpoint;
-import com.tieto.weather.error.ClientError;
+import com.tieto.weather.error.ServerError;
 import com.tieto.weather.mapper.Mapper;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequest;
@@ -35,28 +35,18 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 	
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "WeatherRequest")
 	@ResponsePayload
-	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws ClientError {
+	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws ServerError {
 		
 		WeatherResponseVO response = new WeatherResponseVO();
 		
 		if(weatherRequest.getCity().isEmpty()) {
-			throw new ClientError();
-//			for (String city : cities.getCities().keySet()) {
-//				try {
-//					response.getCityWeather().add(service.getWeatherData(city));
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}				
-//			}
+
+			for (String city : cities.getCities().keySet()) {
+				response.getCityWeather().add(service.getWeatherData(city));			
+			}
 		} else {
 			for (String city : weatherRequest.getCity()) {
-				try {
-					response.getCityWeather().add(service.getWeatherData(city));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				response.getCityWeather().add(service.getWeatherData(city));				
 			}
 		}
 		

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tieto.weather.error.ClientError;
+import com.tieto.weather.error.ServerError;
 import com.tieto.weather.mapper.Mapper;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherResponse;
@@ -42,19 +43,14 @@ public class WeatherRESTController {
 	 */
     @RequestMapping(value="/rest/{city}", method=RequestMethod.GET)
     @ResponseBody
-    public WeatherResponse getCityWeather(@PathVariable("city") String city) throws ClientError {
+    public WeatherResponse getCityWeather(@PathVariable("city") String city) throws ServerError {
             	
-    	throw new ClientError();
-//    	WeatherResponseVO response = null;
-//		try {
-//			response = new WeatherResponseVO(service.getWeatherData(city));
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//    	
-//		// TODO use XSD mapper also here?
-//    	return responseMapper.map(response, factory.createWeatherResponse()); 
+    	
+    	WeatherResponseVO response = null;
+		response = new WeatherResponseVO(service.getWeatherData(city));
+    	
+		// TODO use XSD mapper also here?
+    	return responseMapper.map(response, factory.createWeatherResponse()); 
     }
     
     /**
@@ -64,29 +60,25 @@ public class WeatherRESTController {
      */
     @RequestMapping(value="/rest", method=RequestMethod.GET)
     @ResponseBody
-    public WeatherResponse getAllWeathers() {
+    public WeatherResponse getAllWeathers() throws ServerError {
         
     	WeatherResponseVO response = new WeatherResponseVO();
     	for (String city : cities.getCities().keySet()) {
-    		try {
-    			response.getCityWeather().add(service.getWeatherData(city));
-    		} catch (Exception e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+    		response.getCityWeather().add(service.getWeatherData(city));    		
 		}
     	
 		// use XSD mapper also here?
     	return responseMapper.map(response, factory.createWeatherResponse()); 
     }
     
+    /*
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleError(Exception ex) {
     	HttpHeaders responseHeaders = new HttpHeaders();
     	responseHeaders.set("MyResponseHeader", "MyValue");
     	return new ResponseEntity<String>("Hello World", responseHeaders, HttpStatus.CREATED);
     }
-    
+    */
     
 	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {
 		this.responseMapper = responseMapper;

@@ -1,5 +1,6 @@
 package com.tieto.weather.scheduler;
 
+import com.tieto.weather.error.ServerError;
 import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.CitiesVO;
 
@@ -8,15 +9,10 @@ public class WeatherScheduler {
 	private WeatherService service;
 	private CitiesVO cities;
 
-	public void readWeathers() {
+	public void readWeathers() throws ServerError {
 		for (String city : cities.getCities().keySet()) {
-			try {
-				System.out.println("Scheduled." + city);
-				service.updateWeatherData(city);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("Scheduled." + city);
+			service.updateWeatherData(city);
 		}
 	}
 

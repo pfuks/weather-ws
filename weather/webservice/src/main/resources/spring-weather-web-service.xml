@@ -24,19 +24,14 @@
 	</bean>
 	
 	<bean id="service" class="com.tieto.weather.service.impl.WeatherServiceCachedStub">
-		<property name="unmarshaller" ref="oxm-unmarshaller"/>
 		<property name="wundergroundResponseMapper">
 			<bean class="com.tieto.weather.mapper.impl.WundergroundResponseMapper" />
 		</property>
-		<property name="apiKey" value="${api.key}"/>
-		<property name="url" value="${urlString}"/>
 		<property name="cities" ref="cities"/>
 		<property name="restTemplate">
 			<bean class="org.springframework.web.client.RestTemplate"/>
 		</property>
 	</bean>	
-	
-	<oxm:jaxb2-marshaller id="oxm-unmarshaller" contextPath="com.tieto.weather.wunderground.schema"/>
 	
 	<bean id="weatherObjectFactory" class="com.tieto.weather.schema.ObjectFactory" />
 		
