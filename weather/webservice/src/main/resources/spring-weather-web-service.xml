@@ -45,7 +45,7 @@
 	</bean>	
 	
 	<task:scheduled-tasks>
-		<task:scheduled ref="wundergroundScheduler" method="readWeathers" fixed-rate="${cache.time}"/>
+		<task:scheduled ref="wundergroundScheduler" method="readWeathers" initial-delay="${cache.time}" fixed-rate="${cache.time}"/>
 	</task:scheduled-tasks>
 	
 	<context:property-placeholder location="classpath:config.properties"/>
@@ -69,7 +69,7 @@
 	<security:authentication-manager>
      <security:authentication-provider>
          <security:user-service>
-              <security:user name="${username}" password="${password}" authorities="ROLE_USER" />
+              <security:user name="weather" password="w34th3r" authorities="ROLE_USER" />
               </security:user-service>
      </security:authentication-provider>
 	</security:authentication-manager>

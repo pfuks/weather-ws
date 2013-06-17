@@ -8,6 +8,11 @@ public class WeatherScheduler {
 	
 	private WeatherService service;
 	private CitiesVO cities;
+	
+	public WeatherScheduler() throws ServerError {
+		// to be able to load everything before context is initialized 
+		readWeathers();
+	}
 
 	public void readWeathers() throws ServerError {
 		for (String city : cities.getCities().keySet()) {
