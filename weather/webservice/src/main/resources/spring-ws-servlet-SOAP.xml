@@ -6,9 +6,6 @@
        http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
 
     <sws:annotation-driven/>
-    <sws:interceptors>
-    	<ref bean="wsSecurityInterceptor"/>
-    </sws:interceptors>
     
 	<sws:dynamic-wsdl id="weather"       
 	    portTypeName="WeatherPort"
@@ -29,21 +26,6 @@
 			<ref bean="service" />
 		</property>
 		<property name="cities" ref="cities"/>
-	</bean>
-	
-	<bean id="wsSecurityInterceptor" class="org.springframework.ws.soap.security.xwss.XwsSecurityInterceptor">
-        <property name="policyConfiguration" value="classpath:securityPolicy.xml"/>
-        <property name="callbackHandler">
-                <ref bean="passwordValidationHandler"/>
-        </property>
-    </bean>
-	
-	<bean id="passwordValidationHandler" class="org.springframework.ws.soap.security.xwss.callback.SimplePasswordValidationCallbackHandler">
-	    <property name="users">
-	        <props>
-	            <prop key="weather">w34th3r</prop>
-	        </props>
-	    </property>
 	</bean>
 	
 </beans>

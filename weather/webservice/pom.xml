@@ -60,14 +60,16 @@
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework.ws</groupId>
-		    <artifactId>spring-ws-security</artifactId>
+	    <dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <exclusions>
+		    	<exclusion>
+		          <groupId>org.springframework</groupId>
+		          <artifactId>spring-expression</artifactId>
+       			</exclusion>
+        	</exclusions>
 		</dependency>
-		<dependency>
-	      	<groupId>com.sun.xml.stream</groupId>
-			<artifactId>sjsxp</artifactId>
-	    </dependency>
 	    <dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
