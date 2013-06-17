@@ -9,6 +9,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.oxm.Unmarshaller;
+import org.springframework.web.client.RestTemplate;
 
 import com.tieto.weather.mapper.Mapper;
 import com.tieto.weather.service.WeatherService;
@@ -23,6 +24,7 @@ public class WeatherServiceCached implements WeatherService {
 	private String apiKey;
 	private String url;
 	private CitiesVO cities;
+	private RestTemplate restTemplate;
 
 	@Cacheable(value = "weatherCache")
 	public CityWeatherVO getWeatherData(String city) throws Exception {
@@ -40,6 +42,7 @@ public class WeatherServiceCached implements WeatherService {
 	}
 	
 	private CityWeatherVO getCityWeather(String city) throws Exception {
+		
 				
 		String configuredURL = String.format(url, apiKey, cities.getCities().get(city), city);
 		
@@ -72,5 +75,9 @@ public class WeatherServiceCached implements WeatherService {
 
 	public void setCities(CitiesVO cities) {
 		this.cities = cities;
+	}
+	
+	public void setRestTemplate(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
 	}
 }

@@ -31,6 +31,9 @@
 		<property name="apiKey" value="${api.key}"/>
 		<property name="url" value="${urlString}"/>
 		<property name="cities" ref="cities"/>
+		<property name="restTemplate">
+			<bean class="org.springframework.web.client.RestTemplate"/>
+		</property>
 	</bean>	
 	
 	<oxm:jaxb2-marshaller id="oxm-unmarshaller" contextPath="com.tieto.weather.wunderground.schema"/>
