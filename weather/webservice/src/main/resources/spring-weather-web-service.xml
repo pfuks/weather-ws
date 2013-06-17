@@ -30,6 +30,8 @@
 			<bean class="com.tieto.weather.mapper.impl.WundergroundResponseMapper" />
 		</property>
 		<property name="cities" ref="cities"/>
+		<property name="apikey" value="${apikey}"/>
+		<property name="urlString" value="${urlString}"/>
 		<property name="restTemplate">
 			<bean class="org.springframework.web.client.RestTemplate"/>
 		</property>
@@ -67,7 +69,7 @@
 	<security:authentication-manager>
      <security:authentication-provider>
          <security:user-service>
-              <security:user name="weather" password="w34th3r" authorities="ROLE_USER" />
+              <security:user name="${username}" password="${password}" authorities="ROLE_USER" />
               </security:user-service>
      </security:authentication-provider>
 	</security:authentication-manager>

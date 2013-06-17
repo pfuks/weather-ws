@@ -14,8 +14,8 @@ import com.tieto.weather.wunderground.schema.Response;
 public class WeatherServiceCached implements WeatherService {
 
 	private Mapper<Response, CityWeatherVO> mapper;
-	private String apikey = "23a8ee338cc21fca";
-	private String urlString="http://api.wunderground.com/api/{apiKey}/geolookup/conditions/forecast/q/{country}/{city}.xml";
+	private String apikey;
+	private String urlString;
 	private CitiesVO cities;
 	private RestTemplate restTemplate;
 
@@ -51,5 +51,13 @@ public class WeatherServiceCached implements WeatherService {
 	
 	public void setRestTemplate(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
+	}
+	
+	public void setApikey(String apikey) {
+		this.apikey = apikey;
+	}
+	
+	public void setUrlString(String urlString) {
+		this.urlString = urlString;
 	}
 }
