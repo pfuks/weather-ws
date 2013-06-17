@@ -26,20 +26,10 @@
 			<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 		</property>
 	</bean>
-
+	
+	<!-- for REST controller test purposes -->
 	<bean id="jsonObjectMapper"	class="org.codehaus.jackson.map.ObjectMapper" />
 	
-	<!-- 
-	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="defaultStatusCode" value="404"/>
-        <property name="d"></property>
-        <property name="exceptionMappings">
-            <value>java.lang.Exception</value>
-        </property>
-    </bean>
-     
-    <bean id="hadler" class="org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler">
-    </bean>
-    -->
+	 <bean id="hadler" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" />
    
 </beans>

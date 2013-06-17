@@ -29,12 +29,4 @@
 		<property name="cities" ref="cities"/>
 	</bean>
 	
-    <bean id="exceptionResolver"
-        class="org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver">
-        <property name="defaultFault" value="SERVER"/>
-        <property name="order" value="1"/>
-        <property name="exceptionMappings">
-            <value>java.lang.Exception=CLIENT,Invalid request</value>
-        </property>
-    </bean>
 </beans>
