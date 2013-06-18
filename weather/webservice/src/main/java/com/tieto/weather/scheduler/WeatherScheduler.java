@@ -6,10 +6,12 @@ import com.tieto.weather.vo.CitiesVO;
 
 public class WeatherScheduler {
 	
-	private WeatherService service;
+	private WeatherService weatherService;
 	private CitiesVO cities;
 	
-	public WeatherScheduler() throws ServerError {
+	public WeatherScheduler(WeatherService weatherService, CitiesVO cities) throws ServerError {
+		this.weatherService = weatherService;
+		this.cities = cities;
 		// to be able to load everything before context is initialized 
 		readWeathers();
 	}
@@ -17,15 +19,7 @@ public class WeatherScheduler {
 	public void readWeathers() throws ServerError {
 		for (String city : cities.getCities().keySet()) {
 			System.out.println("Scheduled." + city);
-			service.updateWeatherData(city);
+			weatherService.updateWeatherData(city);
 		}
-	}
-
-	public void setWeatherService(WeatherService service) {
-		this.service = service;
-	}
-	
-	public void setCities(CitiesVO cities) {
-		this.cities = cities;
 	}
 }
