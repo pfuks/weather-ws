@@ -11,6 +11,7 @@ import com.tieto.weather.error.ClientError;
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
+import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.CitiesVO;
@@ -37,14 +38,17 @@ public class WeatherRESTController {
 	 * @param city City from URL.
 	 * @return Weather data for city from request.
 	 * @throws ServerError 
+	 * @throws ClientError - for validation
 	 */
     @RequestMapping(value="/rest/{city}", method=RequestMethod.GET)
     @ResponseBody
-    public WeatherResponse getCityWeather(@PathVariable("city") String city) throws ServerError {
+    public WeatherResponse getCityWeather(@PathVariable("city") String city) throws ServerError, ClientError {
             	
     	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request for city: " + city);
     	WeatherResponseVO response;
     	WeatherResponse result;
+    	
+    	validationCities(city);
     	
 		response = new WeatherResponseVO(service.getWeatherData(city));
     	
@@ -82,6 +86,21 @@ public class WeatherRESTController {
     	
     	return result;  
     }
+    
+	/**
+	 * Validation for Cities in REST request.
+	 * 
+	 * @param weatherRequest
+	 * @throws ClientError - for undefined city from configuration
+	 */
+	private void validationCities(String city) throws ClientError {
+		
+		if ( !cities.getCities().containsKey(city) ) {
+			throw new ClientError("Validation REST request - Undefined city!");
+		}
+				
+	}
+    
     
     /*
     @ExceptionHandler(Exception.class)

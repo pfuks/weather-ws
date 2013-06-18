@@ -1,9 +1,11 @@
 package com.tieto.weather.error;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.ws.soap.server.endpoint.annotation.FaultCode;
 import org.springframework.ws.soap.server.endpoint.annotation.SoapFault;
+
 
 /**
  * Error class for errors caused by server like missing legacy data. 
@@ -17,5 +19,12 @@ public class ServerError extends Exception {
 	public ServerError() {
 		
 		super("Server ERROR !!");
+		LoggerFactory.getLogger(ServerError.class).error("Server ERROR !!");
+	}
+	
+	public ServerError(String errorMessage) {
+		
+		super(errorMessage);
+		LoggerFactory.getLogger(ServerError.class).error(errorMessage);
 	}
 }

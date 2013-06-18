@@ -6,6 +6,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import com.tieto.weather.error.ClientError;
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
@@ -39,15 +40,17 @@ public class WeatherEndpointSOAP {
 	 * @param weatherRequest Contains list of cities.
 	 * @return Weather data for cities from request or for supported cities.
 	 * @throws ServerError 
+	 * @throws ClientError 
 	 */
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "WeatherRequest")
-	@ResponsePayload
-	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws ServerError {
+	@ResponsePayload	
+	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws ServerError, ClientError {
 		
 		WeatherResponseVO response = new WeatherResponseVO();
 		WeatherResponse result;
 		
-		// TODO check for valid city -> error
+		validationCities(weatherRequest);
+		
 		if(weatherRequest.getCity().isEmpty()) {
 			LoggerFactory.getLogger(WeatherEndpointSOAP.class).info("SOAP Request for all cities.");
 			for (String city : cities.getCities().keySet()) {				
@@ -66,6 +69,25 @@ public class WeatherEndpointSOAP {
 		
 		return result;
 	}
+	
+	
+	
+	/**
+	 * Validation for Cities in SOAP request.
+	 * 
+	 * @param weatherRequest
+	 * @throws ClientError - for undefined city from configuration
+	 */
+	private void validationCities(WeatherRequest weatherRequest) throws ClientError {
+		
+		for (String city : weatherRequest.getCity()) {
+			if ( !cities.getCities().containsKey(city) ) {
+				throw new ClientError("Validation SOAP request - Undefined city!");
+			}
+		}
+				
+	}
+	
 	
 	public void setWeatherResponseMapper( WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;
