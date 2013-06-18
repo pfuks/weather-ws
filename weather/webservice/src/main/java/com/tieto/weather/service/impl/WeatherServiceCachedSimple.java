@@ -5,15 +5,19 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.client.RestTemplate;
 
 import com.tieto.weather.error.ServerError;
-import com.tieto.weather.mapper.Mapper;
-import com.tieto.weather.service.WeatherService;
+import com.tieto.weather.mapper.impl.WundergroundResponseMapper;
+import com.tieto.weather.service.WeatherServiceCached;
 import com.tieto.weather.vo.CitiesVO;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
-public class WeatherServiceCached implements WeatherService {
+/**
+ * Class implementation used for fetching weather data.
+ * Using Spring cache functionality.
+ */
+public class WeatherServiceCachedSimple implements WeatherServiceCached {
 
-	private Mapper<Response, CityWeatherVO> mapper;
+	private WundergroundResponseMapper mapper;
 	private String apikey;
 	private String urlString;
 	private CitiesVO cities;
@@ -34,14 +38,21 @@ public class WeatherServiceCached implements WeatherService {
 
 	}
 	
+	/**
+	 * Method used for connecting to wunderground and returning weather data.
+	 * 
+	 * @param city City for request.
+	 * @return Response from wunderground.
+	 * @throws ServerError
+	 */
 	private CityWeatherVO getCityWeather(String city) throws ServerError {
 
 		Response wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
 		System.out.println("Call Wunderground for: "+city);		
-		return mapper.map(wundergroundResponse, new CityWeatherVO());
+		return mapper.mapWundergroundResponse(wundergroundResponse, new CityWeatherVO());
 	}
 	
-	public void setWundergroundResponseMapper(Mapper<Response, CityWeatherVO> mapper) {
+	public void setWundergroundResponseMapper(WundergroundResponseMapper mapper) {
 		this.mapper = mapper;
 	}
 

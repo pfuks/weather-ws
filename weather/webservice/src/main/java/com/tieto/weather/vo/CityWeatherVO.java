@@ -1,5 +1,8 @@
 package com.tieto.weather.vo;
 
+/**
+ * Value object for storing city weather informations.
+ */
 public class CityWeatherVO {
 	
 	private String location;

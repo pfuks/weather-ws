@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tieto.weather.error.ClientError;
 import com.tieto.weather.error.ServerError;
-import com.tieto.weather.mapper.Mapper;
+import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
@@ -22,7 +21,7 @@ import com.tieto.weather.vo.WeatherResponseVO;
 public class WeatherRESTController {
 	
 	private final ObjectFactory factory;
-	private Mapper<WeatherResponseVO,WeatherResponse> responseMapper;
+	private WeatherResponseMapper responseMapper;
 	private WeatherService service;
 	private CitiesVO cities;
 	
@@ -35,7 +34,7 @@ public class WeatherRESTController {
 	 * 
 	 * @param city City from URL.
 	 * @return Weather data for city from request.
-	 * @throws ClientError 
+	 * @throws ServerError 
 	 */
     @RequestMapping(value="/rest/{city}", method=RequestMethod.GET)
     @ResponseBody
@@ -46,13 +45,14 @@ public class WeatherRESTController {
 		response = new WeatherResponseVO(service.getWeatherData(city));
     	
 		// TODO use XSD mapper also here?
-    	return responseMapper.map(response, factory.createWeatherResponse()); 
+    	return responseMapper.mapWeatherResponse(response, factory.createWeatherResponse()); 
     }
     
     /**
      * Endpoint method for getting weather data for all supported cities.
      * 
      * @return Weather data for supported cities.
+     * @throws ServerError 
      */
     @RequestMapping(value="/rest", method=RequestMethod.GET)
     @ResponseBody
@@ -63,8 +63,7 @@ public class WeatherRESTController {
     		response.getCityWeather().add(service.getWeatherData(city));    		
 		}
     	
-		// use XSD mapper also here?
-    	return responseMapper.map(response, factory.createWeatherResponse()); 
+    	return responseMapper.mapWeatherResponse(response, factory.createWeatherResponse()); 
     }
     
     /*
@@ -76,7 +75,7 @@ public class WeatherRESTController {
     }
     */
     
-	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {
+	public void setWeatherResponseMapper(  WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;
 	}
 

@@ -5,9 +5,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.tieto.weather.WeatherEndpoint;
 import com.tieto.weather.error.ServerError;
-import com.tieto.weather.mapper.Mapper;
+import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
@@ -19,12 +18,12 @@ import com.tieto.weather.vo.WeatherResponseVO;
  * Endpoint for SOAP calls.
  */
 @Endpoint
-public class WeatherEndpointSOAP implements WeatherEndpoint{
+public class WeatherEndpointSOAP {
 
 	private static final String NAMESPACE_URI = "http://weather.tieto.com/schemas";
 	
 	private final ObjectFactory factory;
-	private Mapper<WeatherResponseVO,WeatherResponse> responseMapper;
+	private WeatherResponseMapper responseMapper;
 	private WeatherService service;
 	private CitiesVO cities;
 	
@@ -32,7 +31,14 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 		this.factory = factory;
 	}
 	
-	
+	/**
+	 * Endpoint method for getting weather data.
+	 * If empty city list is provided in request then are returned data for supported cities.
+	 * 
+	 * @param weatherRequest Contains list of cities.
+	 * @return Weather data for cities from request or for supported cities.
+	 * @throws ServerError 
+	 */
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "WeatherRequest")
 	@ResponsePayload
 	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws ServerError {
@@ -50,10 +56,10 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 			}
 		}
 		
-		return responseMapper.map(response, factory.createWeatherResponse()); 
+		return responseMapper.mapWeatherResponse(response, factory.createWeatherResponse()); 
 	}
 	
-	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {
+	public void setWeatherResponseMapper( WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;
 	}
 

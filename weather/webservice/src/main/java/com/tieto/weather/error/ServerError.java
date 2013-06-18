@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.ws.soap.server.endpoint.annotation.FaultCode;
 import org.springframework.ws.soap.server.endpoint.annotation.SoapFault;
 
+/**
+ * Error class for errors caused by server like missing legacy data. 
+ */
 @SoapFault(faultCode = FaultCode.SERVER)
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason="Server ERROR !!")
 public class ServerError extends Exception {

@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.ws.soap.server.endpoint.annotation.FaultCode;
 import org.springframework.ws.soap.server.endpoint.annotation.SoapFault;
 
+/**
+ * Error class for errors caused by client like bad request. 
+ */
 @SoapFault(faultCode = FaultCode.CLIENT)
 @ResponseStatus(value = HttpStatus.FORBIDDEN, reason="Client ERROR !!")
 public class ClientError extends Exception {
