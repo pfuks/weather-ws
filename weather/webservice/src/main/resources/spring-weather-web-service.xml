@@ -25,7 +25,7 @@
 	    </property>
 	</bean>
 	
-	<bean id="service" class="com.tieto.weather.service.impl.WeatherServiceCached">
+	<bean id="service" class="com.tieto.weather.service.impl.WeatherServiceCachedSimple">
 		<property name="wundergroundResponseMapper">
 			<bean class="com.tieto.weather.mapper.impl.WundergroundResponseMapper" />
 		</property>
