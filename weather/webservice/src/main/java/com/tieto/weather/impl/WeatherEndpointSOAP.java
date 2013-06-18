@@ -6,9 +6,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.tieto.weather.WeatherEndpoint;
 import com.tieto.weather.error.ServerError;
-import com.tieto.weather.mapper.Mapper;
+import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
@@ -20,12 +19,12 @@ import com.tieto.weather.vo.WeatherResponseVO;
  * Endpoint for SOAP calls.
  */
 @Endpoint
-public class WeatherEndpointSOAP implements WeatherEndpoint{
+public class WeatherEndpointSOAP {
 
 	private static final String NAMESPACE_URI = "http://weather.tieto.com/schemas";
 	
 	private final ObjectFactory factory;
-	private Mapper<WeatherResponseVO,WeatherResponse> responseMapper;
+	private WeatherResponseMapper responseMapper;
 	private WeatherService service;
 	private CitiesVO cities;
 	
@@ -54,14 +53,14 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 			}
 		}
 		
-		result = responseMapper.map(response, factory.createWeatherResponse()); 
+		result = responseMapper.mapWeatherResponse(response, factory.createWeatherResponse()); 
 		
 		LoggerFactory.getLogger(WeatherRESTController.class).info("SOAP Request completed.");
 		
 		return result;
 	}
 	
-	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {
+	public void setWeatherResponseMapper( WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;
 	}
 

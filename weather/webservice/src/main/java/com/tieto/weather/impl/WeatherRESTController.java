@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tieto.weather.error.ClientError;
 import com.tieto.weather.error.ServerError;
-import com.tieto.weather.mapper.Mapper;
+import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
@@ -23,7 +23,7 @@ import com.tieto.weather.vo.WeatherResponseVO;
 public class WeatherRESTController {
 	
 	private final ObjectFactory factory;
-	private Mapper<WeatherResponseVO,WeatherResponse> responseMapper;
+	private WeatherResponseMapper responseMapper;
 	private WeatherService service;
 	private CitiesVO cities;
 	
@@ -48,7 +48,7 @@ public class WeatherRESTController {
     	
 		response = new WeatherResponseVO(service.getWeatherData(city));
     	
-		result = responseMapper.map(response, factory.createWeatherResponse());
+		result = responseMapper.mapWeatherResponse(response, factory.createWeatherResponse());
 		// TODO use XSD mapper also here?
 		
 		LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request completed.");
@@ -75,7 +75,7 @@ public class WeatherRESTController {
 		}
     	    	
 		// use XSD mapper also here?
-    	result = responseMapper.map(response, factory.createWeatherResponse());
+    	result = responseMapper.mapWeatherResponse(response, factory.createWeatherResponse());
     	
     	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request completed.");
     	
@@ -91,7 +91,7 @@ public class WeatherRESTController {
     }
     */
     
-	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {
+	public void setWeatherResponseMapper( WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;
 	}
 
