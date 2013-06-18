@@ -1,11 +1,13 @@
 package com.tieto.weather.impl;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tieto.weather.error.ClientError;
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
@@ -40,12 +42,18 @@ public class WeatherRESTController {
     @ResponseBody
     public WeatherResponse getCityWeather(@PathVariable("city") String city) throws ServerError {
             	
+    	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request for city: " + city);
+    	WeatherResponseVO response;
+    	WeatherResponse result;
     	
-    	WeatherResponseVO response = null;
 		response = new WeatherResponseVO(service.getWeatherData(city));
     	
+		result = responseMapper.mapWeatherResponse(response, factory.createWeatherResponse());
 		// TODO use XSD mapper also here?
-    	return responseMapper.mapWeatherResponse(response, factory.createWeatherResponse()); 
+		
+		LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request completed.");
+		
+    	return result; 
     }
     
     /**
@@ -58,12 +66,21 @@ public class WeatherRESTController {
     @ResponseBody
     public WeatherResponse getAllWeathers() throws ServerError {
         
+    	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request for all cities.");
+    	
     	WeatherResponseVO response = new WeatherResponseVO();
+    	WeatherResponse result;
+    	
     	for (String city : cities.getCities().keySet()) {
     		response.getCityWeather().add(service.getWeatherData(city));    		
 		}
+    	    	
+		// use XSD mapper also here?
+    	result = responseMapper.mapWeatherResponse(response, factory.createWeatherResponse());
     	
-    	return responseMapper.mapWeatherResponse(response, factory.createWeatherResponse()); 
+    	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request completed.");
+    	
+    	return result;  
     }
     
     /*
@@ -75,7 +92,7 @@ public class WeatherRESTController {
     }
     */
     
-	public void setWeatherResponseMapper(  WeatherResponseMapper responseMapper) {
+	public void setWeatherResponseMapper( WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;
 	}
 

@@ -2,7 +2,7 @@ package com.tieto.weather.service.impl;
 
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.client.RestClientException;
+//import org.springframework.web.client.RestClientException;
 
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.vo.CityWeatherVO;

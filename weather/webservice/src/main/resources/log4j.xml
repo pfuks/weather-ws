@@ -4,15 +4,15 @@
 
    <appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
       <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss} %5p %c{1} - %m%n"/>
+         <param name="ConversionPattern" value="%d{dd.MMM.yyyy HH:mm:ss} %5p %c{1} - %m%n"/>
       </layout>
    </appender>
 
    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
-      <param name="append" value="false"/>
-      <param name="file" value="out/weather-info.log"/>
+      <param name="append" value="true"/>
+      <param name="file" value="log/weather-info.log"/>
       <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+         <param name="ConversionPattern" value="%d{dd.MMM.yyyy HH:mm:ss} %5p %c{1} - %m%n"/>
       </layout>
    </appender>
 
