@@ -1,5 +1,6 @@
 package com.tieto.weather.impl;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -38,19 +39,26 @@ public class WeatherEndpointSOAP implements WeatherEndpoint{
 	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws ServerError {
 		
 		WeatherResponseVO response = new WeatherResponseVO();
+		WeatherResponse result;
 		
+		// TODO check for valid city -> error
 		if(weatherRequest.getCity().isEmpty()) {
-
-			for (String city : cities.getCities().keySet()) {
+			LoggerFactory.getLogger(WeatherEndpointSOAP.class).info("SOAP Request for all cities.");
+			for (String city : cities.getCities().keySet()) {				
 				response.getCityWeather().add(service.getWeatherData(city));			
 			}
 		} else {
+			LoggerFactory.getLogger(WeatherEndpointSOAP.class).info("SOAP Request for city: " + weatherRequest.getCity());
 			for (String city : weatherRequest.getCity()) {
 				response.getCityWeather().add(service.getWeatherData(city));				
 			}
 		}
 		
-		return responseMapper.map(response, factory.createWeatherResponse()); 
+		result = responseMapper.map(response, factory.createWeatherResponse()); 
+		
+		LoggerFactory.getLogger(WeatherRESTController.class).info("SOAP Request completed.");
+		
+		return result;
 	}
 	
 	public void setWeatherResponseMapper( Mapper<WeatherResponseVO,WeatherResponse> responseMapper) {

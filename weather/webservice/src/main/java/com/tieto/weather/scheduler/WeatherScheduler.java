@@ -18,7 +18,6 @@ public class WeatherScheduler {
 
 	public void readWeathers() throws ServerError {
 		for (String city : cities.getCities().keySet()) {
-			System.out.println("Scheduled." + city);
 			weatherService.updateWeatherData(city);
 		}
 	}

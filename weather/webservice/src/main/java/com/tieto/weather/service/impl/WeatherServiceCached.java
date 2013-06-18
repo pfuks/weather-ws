@@ -1,5 +1,6 @@
 package com.tieto.weather.service.impl;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.client.RestTemplate;
@@ -11,8 +12,6 @@ import com.tieto.weather.vo.CitiesVO;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class WeatherServiceCached implements WeatherService {
 
@@ -25,24 +24,28 @@ public class WeatherServiceCached implements WeatherService {
 	@Cacheable(value = "weatherCache")
 	public CityWeatherVO getWeatherData(String city) throws ServerError {
 		
-		System.out.println("Not found in cache: "+city);
+		LoggerFactory.getLogger(WeatherServiceCached.class).info("Not found in cache -> call Wunderground: " + city);
+		
 		return getCityWeather(city);
 	}
 	
 	@CachePut(value = "weatherCache")
 	public CityWeatherVO updateWeatherData(String city) throws ServerError {
 		
-		//System.out.println("Put to cache: "+city);
-	    Logger log = LoggerFactory.getLogger(this.getClass());
-	    log.info("Put to cache: "+city);
-		return getCityWeather(city);
+		CityWeatherVO result;
+		result = getCityWeather(city);
+	    
+		LoggerFactory.getLogger(WeatherServiceCached.class).info("Put to cache: " + city);
+	    
+		return result;
 
 	}
 	
 	private CityWeatherVO getCityWeather(String city) throws ServerError {
 
 		Response wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
-		System.out.println("Call Wunderground for: "+city);		
+		LoggerFactory.getLogger(WeatherServiceCached.class).info("Call Wunderground for: " + city);
+		
 		return mapper.map(wundergroundResponse, new CityWeatherVO());
 	}
 	

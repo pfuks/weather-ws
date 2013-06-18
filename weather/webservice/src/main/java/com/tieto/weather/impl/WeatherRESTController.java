@@ -1,5 +1,6 @@
 package com.tieto.weather.impl;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,12 +42,18 @@ public class WeatherRESTController {
     @ResponseBody
     public WeatherResponse getCityWeather(@PathVariable("city") String city) throws ServerError {
             	
+    	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request for city: " + city);
+    	WeatherResponseVO response;
+    	WeatherResponse result;
     	
-    	WeatherResponseVO response = null;
 		response = new WeatherResponseVO(service.getWeatherData(city));
     	
+		result = responseMapper.map(response, factory.createWeatherResponse());
 		// TODO use XSD mapper also here?
-    	return responseMapper.map(response, factory.createWeatherResponse()); 
+		
+		LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request completed.");
+		
+    	return result; 
     }
     
     /**
@@ -58,13 +65,21 @@ public class WeatherRESTController {
     @ResponseBody
     public WeatherResponse getAllWeathers() throws ServerError {
         
+    	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request for all cities.");
+    	
     	WeatherResponseVO response = new WeatherResponseVO();
+    	WeatherResponse result;
+    	
     	for (String city : cities.getCities().keySet()) {
     		response.getCityWeather().add(service.getWeatherData(city));    		
 		}
-    	
+    	    	
 		// use XSD mapper also here?
-    	return responseMapper.map(response, factory.createWeatherResponse()); 
+    	result = responseMapper.map(response, factory.createWeatherResponse());
+    	
+    	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request completed.");
+    	
+    	return result;  
     }
     
     /*
