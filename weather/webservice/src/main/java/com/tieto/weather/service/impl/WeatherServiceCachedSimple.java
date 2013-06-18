@@ -12,7 +12,10 @@ import com.tieto.weather.vo.CitiesVO;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
-
+/**
+ * Class implementation used for fetching weather data.
+ * Using Spring cache functionality.
+ */
 public class WeatherServiceCachedSimple implements WeatherServiceCached {
 
 	private WundergroundResponseMapper mapper;
@@ -41,6 +44,13 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 
 	}
 	
+	/**
+	 * Method used for connecting to wunderground and returning weather data.
+	 * 
+	 * @param city City for request.
+	 * @return Response from wunderground.
+	 * @throws ServerError
+	 */
 	private CityWeatherVO getCityWeather(String city) throws ServerError {
 
 		Response wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);

@@ -32,7 +32,14 @@ public class WeatherEndpointSOAP {
 		this.factory = factory;
 	}
 	
-	
+	/**
+	 * Endpoint method for getting weather data.
+	 * If empty city list is provided in request then are returned data for supported cities.
+	 * 
+	 * @param weatherRequest Contains list of cities.
+	 * @return Weather data for cities from request or for supported cities.
+	 * @throws ServerError 
+	 */
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "WeatherRequest")
 	@ResponsePayload
 	public WeatherResponse handleWeatherRequest(@RequestPayload WeatherRequest weatherRequest) throws ServerError {

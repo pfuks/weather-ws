@@ -36,7 +36,7 @@ public class WeatherRESTController {
 	 * 
 	 * @param city City from URL.
 	 * @return Weather data for city from request.
-	 * @throws ClientError 
+	 * @throws ServerError 
 	 */
     @RequestMapping(value="/rest/{city}", method=RequestMethod.GET)
     @ResponseBody
@@ -60,6 +60,7 @@ public class WeatherRESTController {
      * Endpoint method for getting weather data for all supported cities.
      * 
      * @return Weather data for supported cities.
+     * @throws ServerError 
      */
     @RequestMapping(value="/rest", method=RequestMethod.GET)
     @ResponseBody
