@@ -62,7 +62,7 @@ public class WeatherEndpointSOAP {
 		
 		result = responseMapper.mapWeatherResponse(response, factory.createWeatherResponse()); 
 		
-		LoggerFactory.getLogger(WeatherRESTController.class).info("SOAP Request completed.");
+		LoggerFactory.getLogger(WeatherEndpointSOAP.class).info("SOAP Request completed.");
 		
 		return result;
 	}
