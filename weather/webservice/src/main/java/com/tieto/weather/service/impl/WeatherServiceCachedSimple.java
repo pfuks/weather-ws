@@ -33,26 +33,21 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 	@CachePut(value = "weatherCache")
 	public CityWeatherVO updateWeatherData(String city) throws ServerError {
 		
-		System.out.println("Put to cache: "+city);
+		//System.out.println("Put to cache: "+city);
+	    Logger log = LoggerFactory.getLogger(this.getClass());
+	    log.info("Put to cache: "+city);
 		return getCityWeather(city);
 
 	}
 	
-	/**
-	 * Method used for connecting to wunderground and returning weather data.
-	 * 
-	 * @param city City for request.
-	 * @return Response from wunderground.
-	 * @throws ServerError
-	 */
 	private CityWeatherVO getCityWeather(String city) throws ServerError {
 
 		Response wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
 		System.out.println("Call Wunderground for: "+city);		
-		return mapper.mapWundergroundResponse(wundergroundResponse, new CityWeatherVO());
+		return mapper.map(wundergroundResponse, new CityWeatherVO());
 	}
 	
-	public void setWundergroundResponseMapper(WundergroundResponseMapper mapper) {
+	public void setWundergroundResponseMapper(Mapper<Response, CityWeatherVO> mapper) {
 		this.mapper = mapper;
 	}
 
