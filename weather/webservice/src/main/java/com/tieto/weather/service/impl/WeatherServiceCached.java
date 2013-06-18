@@ -11,6 +11,9 @@ import com.tieto.weather.vo.CitiesVO;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class WeatherServiceCached implements WeatherService {
 
 	private Mapper<Response, CityWeatherVO> mapper;
@@ -29,7 +32,9 @@ public class WeatherServiceCached implements WeatherService {
 	@CachePut(value = "weatherCache")
 	public CityWeatherVO updateWeatherData(String city) throws ServerError {
 		
-		System.out.println("Put to cache: "+city);
+		//System.out.println("Put to cache: "+city);
+	    Logger log = LoggerFactory.getLogger(this.getClass());
+	    log.info("Put to cache: "+city);
 		return getCityWeather(city);
 
 	}

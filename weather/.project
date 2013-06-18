@@ -3,6 +3,9 @@
 	<name>weather</name>
 	<comment></comment>
 	<projects>
+		<project>weather-ws</project>
+		<project>weather-xsd</project>
+		<project>wunderground-xsd</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

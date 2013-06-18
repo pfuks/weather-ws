@@ -25,7 +25,7 @@ public class WeatherServiceCachedStub extends WeatherServiceCached {
 	}
 	
 	private CityWeatherVO getCityWeather(String city) throws ServerError {
-		throw new RestClientException("dfgdfg");
-//		return new CityWeatherVO();
+//		throw new RestClientException("dfgdfg");
+		return new CityWeatherVO();
 	}
 }
