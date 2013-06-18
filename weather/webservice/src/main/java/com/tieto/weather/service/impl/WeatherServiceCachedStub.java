@@ -7,7 +7,10 @@ import org.springframework.cache.annotation.Cacheable;
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.vo.CityWeatherVO;
 
-public class WeatherServiceCachedStub extends WeatherServiceCached {
+/**
+ * Stub for testing purposes.
+ */
+public class WeatherServiceCachedStub extends WeatherServiceCachedSimple {
 
 	@Cacheable(value = "weatherCache")
 	public CityWeatherVO getWeatherData(String city) throws ServerError {

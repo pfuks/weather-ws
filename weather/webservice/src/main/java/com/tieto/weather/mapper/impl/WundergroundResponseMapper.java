@@ -1,12 +1,14 @@
 package com.tieto.weather.mapper.impl;
 
-import com.tieto.weather.mapper.Mapper;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
-public class WundergroundResponseMapper implements Mapper<Response, CityWeatherVO> {
+/**
+ * Class used for mapping wunderground response to application VO.
+ */
+public class WundergroundResponseMapper {
 
-	public CityWeatherVO map(Response source, CityWeatherVO target) {
+	public CityWeatherVO mapWundergroundResponse(Response source, CityWeatherVO target) {
 		
 		target.setLocation(source.getCurrentObservation().getDisplayLocation().getFull());
 		target.setRelativeHumidity(source.getCurrentObservation().getRelativeHumidity());

@@ -2,15 +2,17 @@ package com.tieto.weather.mapper.impl;
 
 import java.math.BigDecimal;
 
-import com.tieto.weather.mapper.Mapper;
 import com.tieto.weather.schema.CityWeatherType;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.vo.WeatherResponseVO;
 
-public class WeatherResponseMapper implements Mapper<WeatherResponseVO,WeatherResponse> {
+/**
+ * Class used for mapping application VO to application response.
+ */
+public class WeatherResponseMapper {
 	
-	public WeatherResponse map(WeatherResponseVO source, WeatherResponse response) {
+	public WeatherResponse mapWeatherResponse(WeatherResponseVO source, WeatherResponse response) {
 		
 		for (CityWeatherVO weather : source.getCityWeather()) {
 			CityWeatherType item = new CityWeatherType();
