@@ -36,10 +36,27 @@
 		<property name="cities" ref="cities"/>
 		<property name="apikey" value="${apikey}"/>
 		<property name="urlString" value="${urlString}"/>
-		<property name="restTemplate">
-			<bean class="org.springframework.web.client.RestTemplate"/>
+		<property name="restTemplate" ref="restTemplate"/>
+	</bean>
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<bean id="messageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+					<property name="unmarshaller" ref="xmlMarshaller" />
+				</bean>
+			</list>
 		</property>
-	</bean>	
+	</bean>
+
+	<bean id="xmlMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="packagesToScan">
+			<list>
+				<value>com.tieto.weather.wunderground.schema</value>
+			</list>
+		</property>
+		<property name="schema" value="classpath:/wunderground.xsd" />
+	</bean>
 	
 	<bean id="weatherObjectFactory" class="com.tieto.weather.schema.ObjectFactory" />
 	

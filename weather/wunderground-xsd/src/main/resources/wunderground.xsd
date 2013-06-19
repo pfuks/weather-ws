@@ -93,7 +93,7 @@
 	<xs:element name="features">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="feature" minOccurs="0" />
+				<xs:element ref="feature" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -130,7 +130,14 @@
 	<xs:element name="url" type="xs:string" />
 	<xs:element name="title" type="xs:string" />
 	<xs:element name="link" type="xs:string" />
-	<xs:element name="estimated" type="xs:string" />
+	<xs:element name="estimated">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="estimated" type="xs:string" minOccurs="0" />
+				<xs:element name="description" type="xs:string" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="station_id" type="xs:string" />
 	<xs:element name="observation_time" type="xs:string" />
 	<xs:element name="observation_time_rfc822" type="xs:string" />
