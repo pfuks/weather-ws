@@ -11,7 +11,6 @@ import com.tieto.weather.error.ClientError;
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
-import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.CitiesVO;

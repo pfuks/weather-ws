@@ -3,7 +3,6 @@ package com.tieto.weather.service.impl;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.tieto.weather.error.ServerError;
@@ -28,7 +27,7 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 	@Cacheable(value = "weatherCache")
 	public CityWeatherVO getWeatherData(String city) throws ServerError {
 		
-		LoggerFactory.getLogger(WeatherServiceCached.class).info("Not found in cache -> call Wunderground: " + city);
+		LoggerFactory.getLogger(WeatherServiceCachedSimple.class).info("Not found in cache -> call Wunderground: " + city);
 		
 		return getCityWeather(city);
 	}
@@ -39,7 +38,7 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 		CityWeatherVO result;
 		result = getCityWeather(city);
 	    
-		LoggerFactory.getLogger(WeatherServiceCached.class).info("Put to cache: " + city);
+		LoggerFactory.getLogger(WeatherServiceCachedSimple.class).info("Put to cache: " + city);
 	    
 		return result;
 
@@ -54,15 +53,20 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 	 */
 	private CityWeatherVO getCityWeather(String city) throws ServerError {
 
-		try{
-			Response wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
-			LoggerFactory.getLogger(WeatherServiceCached.class).info("Call Wunderground for: " + city);
-			
-			return mapper.mapWundergroundResponse(wundergroundResponse, new CityWeatherVO());
-		} catch(Exception ex) {
-			System.out.println("");
+		LoggerFactory.getLogger(WeatherServiceCachedSimple.class).info("Call Wunderground for: " + city);
+		
+		Response wundergroundResponse;
+		
+		try {
+			wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
+		} catch (Exception ex) {
+			throw new ServerError("Call Wunderground FAILED!");
 		}
-		return null;
+		
+		CityWeatherVO result = mapper.mapWundergroundResponse(wundergroundResponse, new CityWeatherVO());
+		LoggerFactory.getLogger(WeatherServiceCachedSimple.class).info("Successfully fetched from Wunderground: " + city);
+		
+		return result;
 	}
 	
 	public void setWundergroundResponseMapper(WundergroundResponseMapper mapper) {

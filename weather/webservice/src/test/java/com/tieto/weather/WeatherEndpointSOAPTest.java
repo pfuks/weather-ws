@@ -24,11 +24,7 @@ import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(
-	{
-		"/spring-ws-servlet-SOAP.xml", "/spring-weather-web-service.xml"
-	}
-) 
+@ContextConfiguration(locations={"classpath:weather-web-service-test.xml"})  
 public class WeatherEndpointSOAPTest {
 	
 	@Autowired

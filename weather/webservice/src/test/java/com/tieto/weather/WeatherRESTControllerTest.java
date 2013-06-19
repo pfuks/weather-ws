@@ -26,11 +26,7 @@ import com.tieto.weather.schema.WeatherResponse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(
-	{
-		"/spring-ws-servlet-REST.xml", "/spring-weather-web-service.xml"
-	}
-) 
+@ContextConfiguration(locations={"classpath:weather-web-service-test.xml"})   
 public class WeatherRESTControllerTest {
 	
 	@Autowired
