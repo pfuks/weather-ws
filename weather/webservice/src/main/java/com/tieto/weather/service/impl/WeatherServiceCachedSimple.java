@@ -3,6 +3,7 @@ package com.tieto.weather.service.impl;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.tieto.weather.error.ServerError;
@@ -53,10 +54,15 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 	 */
 	private CityWeatherVO getCityWeather(String city) throws ServerError {
 
-		Response wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
-		LoggerFactory.getLogger(WeatherServiceCached.class).info("Call Wunderground for: " + city);
-		
-		return mapper.mapWundergroundResponse(wundergroundResponse, new CityWeatherVO());
+		try{
+			Response wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
+			LoggerFactory.getLogger(WeatherServiceCached.class).info("Call Wunderground for: " + city);
+			
+			return mapper.mapWundergroundResponse(wundergroundResponse, new CityWeatherVO());
+		} catch(Exception ex) {
+			System.out.println("");
+		}
+		return null;
 	}
 	
 	public void setWundergroundResponseMapper(WundergroundResponseMapper mapper) {
