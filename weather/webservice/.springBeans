@@ -10,7 +10,6 @@
 		<config>src/main/resources/spring-ws-servlet-SOAP.xml</config>
 		<config>src/main/resources/spring-ws-servlet-REST.xml</config>
 		<config>src/main/resources/weather-web-service.xml</config>
-		<config>src/test/resources/weather-web-service-test.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
