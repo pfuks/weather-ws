@@ -1,4 +1,4 @@
-package com.tieto.weather;
+package com.tieto.weather.impl;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
