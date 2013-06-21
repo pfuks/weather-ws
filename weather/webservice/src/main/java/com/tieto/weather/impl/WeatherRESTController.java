@@ -52,8 +52,7 @@ public class WeatherRESTController {
 		response = new WeatherResponseVO(service.getWeatherData(city));
     	
 		result = responseMapper.mapWeatherResponse(response, factory.createWeatherResponse());
-		// TODO use XSD mapper also here?
-		
+
 		LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request completed.");
 		
     	return result; 
@@ -77,8 +76,7 @@ public class WeatherRESTController {
     	for (String city : cities.getCities().keySet()) {
     		response.getCityWeather().add(service.getWeatherData(city));    		
 		}
-    	    	
-		// use XSD mapper also here?
+
     	result = responseMapper.mapWeatherResponse(response, factory.createWeatherResponse());
     	
     	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request completed.");
@@ -100,15 +98,6 @@ public class WeatherRESTController {
 				
 	}
     
-    
-    /*
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleError(Exception ex) {
-    	HttpHeaders responseHeaders = new HttpHeaders();
-    	responseHeaders.set("MyResponseHeader", "MyValue");
-    	return new ResponseEntity<String>("Hello World", responseHeaders, HttpStatus.CREATED);
-    }
-    */
     
 	public void setWeatherResponseMapper( WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;

@@ -5,7 +5,7 @@
 	<xs:element name="WeatherRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="City" type="xs:string" maxOccurs="unbounded" minOccurs="0"></xs:element>
+				<xs:element name="City" type="xs:string" maxOccurs="unbounded" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

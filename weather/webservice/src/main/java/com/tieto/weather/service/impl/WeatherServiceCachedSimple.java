@@ -54,16 +54,16 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 	private CityWeatherVO getCityWeather(String city) throws ServerError {
 
 		LoggerFactory.getLogger(WeatherServiceCachedSimple.class).info("Call Wunderground for: " + city);
-		
-		Response wundergroundResponse;
+				
+		CityWeatherVO result;
 		
 		try {
-			wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
+			Response wundergroundResponse = restTemplate.getForObject(urlString, Response.class, apikey, cities.getCities().get(city), city);
+			result = mapper.mapWundergroundResponse(wundergroundResponse, new CityWeatherVO());
 		} catch (Exception ex) {
-			throw new ServerError("Call Wunderground FAILED!");
+			throw new ServerError("Call Wunderground FAILED!", ex);
 		}
 		
-		CityWeatherVO result = mapper.mapWundergroundResponse(wundergroundResponse, new CityWeatherVO());
 		LoggerFactory.getLogger(WeatherServiceCachedSimple.class).info("Successfully fetched from Wunderground: " + city);
 		
 		return result;

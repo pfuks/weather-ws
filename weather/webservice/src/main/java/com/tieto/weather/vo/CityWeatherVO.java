@@ -1,5 +1,6 @@
 package com.tieto.weather.vo;
 
+
 /**
  * Value object for storing city weather informations.
  */
@@ -11,6 +12,7 @@ public class CityWeatherVO {
 	private String windDirection;
 	private String weather;
 	private String windString;
+	private String weatherDate;
 
 	public String getLocation() {
 		return location;
@@ -58,6 +60,14 @@ public class CityWeatherVO {
 
 	public void setWindString(String windString) {
 		this.windString = windString;
+	}
+
+	public String getWeatherDate() {
+		return weatherDate;
+	}
+
+	public void setWeatherDate(String weatherDate) {
+		this.weatherDate = weatherDate;
 	}
 		
 }

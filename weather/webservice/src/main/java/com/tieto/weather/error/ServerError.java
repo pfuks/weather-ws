@@ -27,4 +27,10 @@ public class ServerError extends Exception {
 		super(errorMessage);
 		LoggerFactory.getLogger(ServerError.class).error(errorMessage);
 	}
+	
+	public ServerError(String errorMessage, Exception ex) {
+		
+		super(errorMessage);
+		LoggerFactory.getLogger(ServerError.class).error(errorMessage + ex.getMessage());
+	}
 }

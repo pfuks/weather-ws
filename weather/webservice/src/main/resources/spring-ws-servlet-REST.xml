@@ -29,7 +29,5 @@
 	
 	<!-- for REST controller test purposes -->
 	<bean id="jsonObjectMapper"	class="org.codehaus.jackson.map.ObjectMapper" />
-	
-<!-- 	<bean id="hadler" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" /> -->
-   
+	   
 </beans>

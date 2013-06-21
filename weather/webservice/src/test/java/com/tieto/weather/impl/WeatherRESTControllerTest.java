@@ -1,88 +1,129 @@
 package com.tieto.weather.impl;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kubek2k.springockito.annotations.ReplaceWithMock;
+import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-import com.tieto.weather.schema.CityWeatherType;
+import com.tieto.weather.error.ClientError;
+import com.tieto.weather.error.ServerError;
+import com.tieto.weather.scheduler.WeatherScheduler;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherResponse;
+import com.tieto.weather.service.WeatherService;
+import com.tieto.weather.vo.CitiesVO;
+import com.tieto.weather.vo.CityWeatherVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(locations={"classpath:weather-web-service-test.xml"})   
+@ContextConfiguration(loader = SpringockitoContextLoader.class,
+locations = {"classpath:/spring-ws-servlet-REST.xml", "classpath:/weather-web-service.xml"})
 public class WeatherRESTControllerTest {
 	
 	@Autowired
-    private WebApplicationContext ctx;
-	private MockMvc mockMvc;
-	@Autowired
-	ObjectFactory factory;
-	@Autowired
-	ObjectMapper mapper;
-
-	@After
-	public void tearDown() throws Exception {
-	}
-	
+    private ObjectFactory factory;
+    @ReplaceWithMock
+    @Autowired
+    private WeatherService service;
+    @ReplaceWithMock
+    @Autowired
+    private CitiesVO cities;
+    @Autowired
+    private WeatherRESTController controller;
+    @ReplaceWithMock
+    private WeatherScheduler wundergroundScheduler;
+    
     @Before
-    public void createClient() {
-    	 this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
-    }
-
-    @Test
-    public void testGetCityWeather() throws Exception {
+    public void setUp() throws ServerError {
     	
-    	WeatherResponse response = factory.createWeatherResponse();
-		CityWeatherType cityWeather = factory.createCityWeatherType();
-		cityWeather.setLocation("Ostrava");
-		cityWeather.setRelativeHumidity("40%");
-		cityWeather.setTempC(BigDecimal.valueOf(21.0));
-		cityWeather.setWeather("Clear");
-		cityWeather.setWindDir("NNW");
-		cityWeather.setWindString("Calm");
-		response.getCityWeather().add(cityWeather);
-		
-		String responseString = mapper.writeValueAsString(response);
-		
-    	mockMvc.perform(get("/rest/{city}","Ostrava").accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk()).andExpect(content().string(responseString));
+    	HashMap<String, String> citiesMap = new HashMap<String, String>();
+    	citiesMap.put("Bohumin", "Czech");
+    	citiesMap.put("Oslo", "Norway");
     	
+    	CityWeatherVO cityWeatherBohumin = new CityWeatherVO();
+    	cityWeatherBohumin.setLocation("Bohumin");
+    	cityWeatherBohumin.setRelativeHumidity("40%")	;	
+    	cityWeatherBohumin.setTemperatureCelsius(21.0);
+    	cityWeatherBohumin.setWeather("Clear");
+    	cityWeatherBohumin.setWindDirection("NNW");
+    	cityWeatherBohumin.setWindString("Calm");
+    	
+    	CityWeatherVO cityWeatherOslo = new CityWeatherVO();
+    	cityWeatherOslo.setLocation("Oslo");
+    	cityWeatherOslo.setRelativeHumidity("30%")	;	
+    	cityWeatherOslo.setTemperatureCelsius(11.0);
+    	cityWeatherOslo.setWeather("Cloudy");
+    	cityWeatherOslo.setWindDirection("NNE");
+    	cityWeatherOslo.setWindString("Strong");
+    	
+		when(cities.getCities()).thenReturn(citiesMap);
+        when(service.getWeatherData("Bohumin")).thenReturn(cityWeatherBohumin);
+        when(service.getWeatherData("Oslo")).thenReturn(cityWeatherOslo);
     }
     
     @Test
-    public void testGetAllWeathers() throws Exception {
-    	
-    	WeatherResponse response = factory.createWeatherResponse();
-		CityWeatherType cityWeather = factory.createCityWeatherType();
-		cityWeather.setLocation("none");
-		cityWeather.setRelativeHumidity("40%");
-		cityWeather.setTempC(BigDecimal.valueOf(21.0));
-		cityWeather.setWeather("Clear");
-		cityWeather.setWindDir("NNW");
-		cityWeather.setWindString("Calm");
-		response.getCityWeather().add(cityWeather);
+	public void testGetCityWeather() throws ServerError, ClientError {
+    	String city = "Bohumin";
 		
-		String responseString = mapper.writeValueAsString(response);
-		
-    	mockMvc.perform(get("/rest").accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk()).andExpect(content().string(responseString));
+    	WeatherResponse response = controller.getCityWeather(city);
     	
+    	assertEquals(1, response.getCityWeather().size());
+    	assertEquals("Bohumin", response.getCityWeather().get(0).getLocation());
+    	assertEquals("40%", response.getCityWeather().get(0).getRelativeHumidity());
+    	assertEquals(BigDecimal.valueOf(21.0), response.getCityWeather().get(0).getTempC());
+    	assertEquals("Clear", response.getCityWeather().get(0).getWeather());
+    	assertEquals("NNW", response.getCityWeather().get(0).getWindDir());
+    	assertEquals("Calm", response.getCityWeather().get(0).getWindString());
+    }
+    
+    @Test(expected = ClientError.class)
+	public void testHandleWeatherRequestWrongCity() throws ServerError, ClientError {
+    	
+    	String city = "Ostrava";
+    	controller.getCityWeather(city);
+    }
+    
+    @Test(expected = ServerError.class)
+    @DirtiesContext
+	public void testHandleWeatherRequestServerError() throws ServerError, ClientError {
+    	
+    	// call for server fault simulation
+        when(service.getWeatherData("Oslo")).thenThrow(new ServerError());
+        
+        String city = "Oslo";
+        
+    	controller.getCityWeather(city);
+    }
+    
+    @Test
+	public void testGetAllWeathers() throws ServerError, ClientError {
+    	
+    	WeatherResponse response = controller.getAllWeathers();
+    	
+    	assertEquals(2, response.getCityWeather().size());
+    	
+    	assertEquals("Bohumin", response.getCityWeather().get(0).getLocation());
+    	assertEquals("40%", response.getCityWeather().get(0).getRelativeHumidity());
+    	assertEquals(BigDecimal.valueOf(21.0), response.getCityWeather().get(0).getTempC());
+    	assertEquals("Clear", response.getCityWeather().get(0).getWeather());
+    	assertEquals("NNW", response.getCityWeather().get(0).getWindDir());
+    	assertEquals("Calm", response.getCityWeather().get(0).getWindString());
+    	
+    	assertEquals("Oslo", response.getCityWeather().get(1).getLocation());
+    	assertEquals("30%", response.getCityWeather().get(1).getRelativeHumidity());
+    	assertEquals(BigDecimal.valueOf(11.0), response.getCityWeather().get(1).getTempC());
+    	assertEquals("Cloudy", response.getCityWeather().get(1).getWeather());
+    	assertEquals("NNE", response.getCityWeather().get(1).getWindDir());
+    	assertEquals("Strong", response.getCityWeather().get(1).getWindString());
     }
 }

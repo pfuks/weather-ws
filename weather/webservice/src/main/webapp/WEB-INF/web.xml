@@ -33,14 +33,17 @@
 		</init-param>
 		<init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/spring-ws-servlet-SOAP.xml</param-value>
+            <param-value>spring-ws-servlet-SOAP.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>soap</servlet-name>
 		<url-pattern>/soap/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>soap</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -51,12 +54,23 @@
             <param-value>classpath:/spring-ws-servlet-REST.xml</param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
-	</servlet>
-		
+	</servlet>		
 	<servlet-mapping>
 		<servlet-name>rest</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+    	<servlet-name>dispatcher</servlet-name>
+    	<url-pattern>/index.jsp</url-pattern>
+	</servlet-mapping>
+
 	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

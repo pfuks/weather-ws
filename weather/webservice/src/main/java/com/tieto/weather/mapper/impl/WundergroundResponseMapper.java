@@ -1,5 +1,7 @@
 package com.tieto.weather.mapper.impl;
 
+import java.text.ParseException;
+
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
@@ -8,7 +10,7 @@ import com.tieto.weather.wunderground.schema.Response;
  */
 public class WundergroundResponseMapper {
 
-	public CityWeatherVO mapWundergroundResponse(Response source, CityWeatherVO target) {
+	public CityWeatherVO mapWundergroundResponse(Response source, CityWeatherVO target) throws ParseException {
 		
 		target.setLocation(source.getCurrentObservation().getDisplayLocation().getFull());
 		target.setRelativeHumidity(source.getCurrentObservation().getRelativeHumidity());
@@ -16,7 +18,8 @@ public class WundergroundResponseMapper {
 		target.setWeather(source.getCurrentObservation().getWeather());
 		target.setWindDirection(source.getCurrentObservation().getWindDir());
 		target.setWindString(source.getCurrentObservation().getWindString());
-				
+		target.setWeatherDate(source.getCurrentObservation().getObservationTime());
+		
 		return target;
 	}
 

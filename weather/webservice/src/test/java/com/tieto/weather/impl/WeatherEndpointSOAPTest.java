@@ -30,7 +30,7 @@ import com.tieto.weather.vo.CityWeatherVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = SpringockitoContextLoader.class,
-locations = {"classpath:/spring-ws-servlet-SOAP.xml", "classpath:/weather-web-service.xml"})
+locations = {"spring-ws-servlet-SOAP.xml", "classpath:/weather-web-service.xml"})
 public class WeatherEndpointSOAPTest {
 	
     @Autowired
