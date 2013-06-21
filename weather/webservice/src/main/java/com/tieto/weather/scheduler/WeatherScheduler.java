@@ -17,8 +17,6 @@ public class WeatherScheduler {
 	public WeatherScheduler(WeatherServiceCached weatherService, CitiesVO cities) throws ServerError {
 		this.weatherService = weatherService;
 		this.cities = cities;
-		// to be able to load everything before context is initialized 
-		readWeathers();
 	}
 
 	/**

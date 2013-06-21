@@ -62,7 +62,7 @@
 	
 	<!-- scheduler + configuration -->
 	
-	<bean id="wundergroundScheduler" class="com.tieto.weather.scheduler.WeatherScheduler">
+	<bean id="wundergroundScheduler" class="com.tieto.weather.scheduler.WeatherScheduler" init-method="readWeathers">
 		<constructor-arg name="weatherService" ref="service"/>
 		<constructor-arg name="cities" ref="cities"/>
 	</bean>	
