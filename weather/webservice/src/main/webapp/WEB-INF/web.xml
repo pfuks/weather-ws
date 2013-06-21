@@ -7,7 +7,7 @@
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:/spring-weather-web-service.xml</param-value>
+		<param-value>classpath:/weather-web-service.xml</param-value>
 	</context-param>
 	
 	<listener>
@@ -25,7 +25,7 @@
 	</filter-mapping>
 
 	<servlet>
-		<servlet-name>spring-ws</servlet-name>
+		<servlet-name>soap</servlet-name>
 		<servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>transformWsdlLocations</param-name>
@@ -39,7 +39,7 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>spring-ws</servlet-name>
+		<servlet-name>soap</servlet-name>
 		<url-pattern>/soap/*</url-pattern>
 	</servlet-mapping>
 	

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mockito="http://www.mockito.org/spring/mockito"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.mockito.org/spring/mockito https://bitbucket.org/kubek2k/springockito/raw/tip/springockito/src/main/resources/spring/mockito.xsd">
+			      
+	<bean id="service" class="com.tieto.weather.service.impl.WeatherServiceCachedSimple">
+		<property name="wundergroundResponseMapper">
+			<bean class="com.tieto.weather.mapper.impl.WundergroundResponseMapper" />
+		</property>
+		<property name="cities" ref="cities"/>
+		<property name="apikey" value="23a8ee338cc21fca"/>
+		<property name="urlString" value="http://api.wunderground.com/api/{apiKey}/conditions/q/{country}/{city}.xml"/>
+		<property name="restTemplate" ref="restTemplate"/>
+	</bean>
+
+	<mockito:mock id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+	<mockito:mock id="cities" class="com.tieto.weather.vo.CitiesVO"/>
+</beans>
