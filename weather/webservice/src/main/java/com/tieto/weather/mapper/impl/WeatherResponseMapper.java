@@ -1,10 +1,6 @@
 package com.tieto.weather.mapper.impl;
 
 import java.math.BigDecimal;
-import java.util.GregorianCalendar;
-
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.tieto.weather.schema.CityWeatherType;
 import com.tieto.weather.schema.WeatherResponse;

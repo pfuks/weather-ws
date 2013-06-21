@@ -49,6 +49,7 @@ public class WeatherEndpointSOAP {
 		WeatherResponseVO response = new WeatherResponseVO();
 		WeatherResponse result;
 		
+		// TODO: validation is case-sensitive - it is not good :)
 		validationCities(weatherRequest);
 		
 		if(weatherRequest.getCity().isEmpty()) {
