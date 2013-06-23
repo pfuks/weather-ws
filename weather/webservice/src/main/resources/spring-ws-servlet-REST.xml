@@ -26,8 +26,5 @@
 			<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 		</property>
 	</bean>
-	
-	<!-- for REST controller test purposes -->
-	<bean id="jsonObjectMapper"	class="org.codehaus.jackson.map.ObjectMapper" />
 	   
 </beans>
