@@ -3572,3 +3572,327 @@ Caused by: java.io.FileNotFoundException: Could not open ServletContext resource
 21.VI.2013 15:38:57  INFO DispatcherServlet - FrameworkServlet 'rest': initialization completed in 5365 ms
 21.VI.2013 15:39:36  INFO WeatherRESTController - REST Request for city: Plzen
 21.VI.2013 15:39:36  INFO WeatherRESTController - REST Request completed.
+21.VI.2013 21:43:22  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:22  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:22  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 21:43:23  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 21:43:23 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 21:43:23 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Bohumin.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Bohumin
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Czech/Plzen.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Plzen
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Norway/Oslo.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Oslo
+21.VI.2013 22:52:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 22:52:54 ERROR ServerError - Call Wunderground FAILED!I/O error on GET request for "http://api.wunderground.com/api/23a8ee338cc21fca/conditions/q/Senegal/Dakar.xml":api.wunderground.com; nested exception is java.net.UnknownHostException: api.wunderground.com
+21.VI.2013 22:52:54 ERROR WeatherScheduler - Call Wunderground FAILED! for: Dakar
+21.VI.2013 23:38:53  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 23:38:54  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Bohumin
+21.VI.2013 23:38:54  INFO WeatherServiceCachedSimple - Put to cache: Bohumin
+21.VI.2013 23:38:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 23:38:54  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Plzen
+21.VI.2013 23:38:54  INFO WeatherServiceCachedSimple - Put to cache: Plzen
+21.VI.2013 23:38:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 23:38:56  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 23:38:56  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Bohumin
+21.VI.2013 23:38:56  INFO WeatherServiceCachedSimple - Put to cache: Bohumin
+21.VI.2013 23:38:56  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 23:38:56  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Oslo
+21.VI.2013 23:38:56  INFO WeatherServiceCachedSimple - Put to cache: Oslo
+21.VI.2013 23:38:56  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 23:38:57  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Plzen
+21.VI.2013 23:38:57  INFO WeatherServiceCachedSimple - Put to cache: Plzen
+21.VI.2013 23:38:57  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 23:38:57  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Dakar
+21.VI.2013 23:38:57  INFO WeatherServiceCachedSimple - Put to cache: Dakar
+21.VI.2013 23:38:57  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Oslo
+21.VI.2013 23:38:57  INFO WeatherServiceCachedSimple - Put to cache: Oslo
+21.VI.2013 23:38:57  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 23:38:58  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Dakar
+21.VI.2013 23:38:58  INFO WeatherServiceCachedSimple - Put to cache: Dakar
+21.VI.2013 23:39:01  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+21.VI.2013 23:39:02  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Bohumin
+21.VI.2013 23:39:02  INFO WeatherServiceCachedSimple - Put to cache: Bohumin
+21.VI.2013 23:39:02  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+21.VI.2013 23:39:02  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Plzen
+21.VI.2013 23:39:02  INFO WeatherServiceCachedSimple - Put to cache: Plzen
+21.VI.2013 23:39:02  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+21.VI.2013 23:39:03  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Oslo
+21.VI.2013 23:39:03  INFO WeatherServiceCachedSimple - Put to cache: Oslo
+21.VI.2013 23:39:03  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+21.VI.2013 23:39:03  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Dakar
+21.VI.2013 23:39:03  INFO WeatherServiceCachedSimple - Put to cache: Dakar
+22.VI.2013 00:38:53  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+22.VI.2013 00:38:54  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Bohumin
+22.VI.2013 00:38:54  INFO WeatherServiceCachedSimple - Put to cache: Bohumin
+22.VI.2013 00:38:54  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+22.VI.2013 00:38:56  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+22.VI.2013 00:38:56  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Bohumin
+22.VI.2013 00:38:56  INFO WeatherServiceCachedSimple - Put to cache: Bohumin
+22.VI.2013 00:38:56  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Plzen
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Put to cache: Plzen
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Plzen
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Put to cache: Plzen
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Oslo
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Put to cache: Oslo
+22.VI.2013 00:38:57  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+22.VI.2013 00:38:58  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Oslo
+22.VI.2013 00:38:58  INFO WeatherServiceCachedSimple - Put to cache: Oslo
+22.VI.2013 00:38:58  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+22.VI.2013 00:38:58  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Dakar
+22.VI.2013 00:38:58  INFO WeatherServiceCachedSimple - Put to cache: Dakar
+22.VI.2013 00:38:58  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Dakar
+22.VI.2013 00:38:58  INFO WeatherServiceCachedSimple - Put to cache: Dakar
+22.VI.2013 00:39:01  INFO WeatherServiceCachedSimple - Call Wunderground for: Bohumin
+22.VI.2013 00:39:02  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Bohumin
+22.VI.2013 00:39:02  INFO WeatherServiceCachedSimple - Put to cache: Bohumin
+22.VI.2013 00:39:02  INFO WeatherServiceCachedSimple - Call Wunderground for: Plzen
+22.VI.2013 00:39:02  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Plzen
+22.VI.2013 00:39:02  INFO WeatherServiceCachedSimple - Put to cache: Plzen
+22.VI.2013 00:39:02  INFO WeatherServiceCachedSimple - Call Wunderground for: Oslo
+22.VI.2013 00:39:03  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Oslo
+22.VI.2013 00:39:03  INFO WeatherServiceCachedSimple - Put to cache: Oslo
+22.VI.2013 00:39:03  INFO WeatherServiceCachedSimple - Call Wunderground for: Dakar
+22.VI.2013 00:39:03  INFO WeatherServiceCachedSimple - Successfully fetched from Wunderground: Dakar
+22.VI.2013 00:39:03  INFO WeatherServiceCachedSimple - Put to cache: Dakar
