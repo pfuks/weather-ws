@@ -95,9 +95,7 @@
 	
 	<security:authentication-manager>
      <security:authentication-provider>
-         <security:user-service>
-              <security:user name="weather" password="w34th3r" authorities="ROLE_USER" />
-              </security:user-service>
+         <security:user-service properties="classpath:access.properties"/>
      </security:authentication-provider>
 	</security:authentication-manager>
 	
