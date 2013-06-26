@@ -2,6 +2,9 @@ package com.tieto.weather.impl;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +17,7 @@ import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.CitiesVO;
+import com.tieto.weather.vo.CityValidator;
 import com.tieto.weather.vo.WeatherResponseVO;
 
 /**
@@ -21,11 +25,12 @@ import com.tieto.weather.vo.WeatherResponseVO;
  */
 @Controller
 public class WeatherRESTController {
-	
+
 	private final ObjectFactory factory;
 	private WeatherResponseMapper responseMapper;
 	private WeatherService service;
 	private CitiesVO cities;
+	private CityValidator validator;
 	
 	public WeatherRESTController(ObjectFactory factory) {
 		this.factory = factory;
@@ -46,6 +51,9 @@ public class WeatherRESTController {
     	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request for city: " + city);
     	WeatherResponseVO response;
     	WeatherResponse result;
+    	   	
+    	Errors errors = new BeanPropertyBindingResult(city, "city");
+    	ValidationUtils.invokeValidator(validator, city, errors);
     	
     	validationCities(city);
     	
@@ -109,5 +117,9 @@ public class WeatherRESTController {
 	
 	public void setCities(CitiesVO cities) {
 		this.cities = cities;
+	}
+	
+	public void setValidator(CityValidator validator) {
+		this.validator = validator;
 	}
 }

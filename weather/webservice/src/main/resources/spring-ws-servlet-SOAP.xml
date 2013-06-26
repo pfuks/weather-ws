@@ -24,16 +24,21 @@
 		<property name="weatherService">
 			<ref bean="service" />
 		</property>
-		<property name="cities" ref="cities"/>
+		<property name="cities" ref="cities"/>	
+		<property name="validator" ref="citiesValidator"/>	
+	</bean>
+
+	<bean id="citiesValidator" class="com.tieto.weather.vo.CitiesValidator">
+		<property name="cities" ref="cities"/>		
 	</bean>
 
 	<sws:interceptors>
-		<bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor" />
+ 		<bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor" /> 
 		<bean id="validatingInterceptor" class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
 		    <property name="schema" value="classpath:/weatherRequest.xsd"/>
 		    <property name="validateRequest" value="true"/>
 		    <property name="validateResponse" value="false"/>
-		</bean>	
+		</bean>
 	</sws:interceptors>
-	
+			
 </beans>

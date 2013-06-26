@@ -83,21 +83,21 @@
 			  <entry key="${city3.name}" value="${city3.country}"/>
 			  <entry key="${city4.name}" value="${city4.country}"/>
 		  </map>
- 		 </constructor-arg>
-	</bean>
+ 		 </constructor-arg> 		 
+	</bean>		
 	
 	<!-- http authentication -->
 	
-	<security:http auto-config="true">
+	<security:http>
 		<security:intercept-url pattern="/**" access="ROLE_USER"/>
 		<security:http-basic/>
 	</security:http>
-	
+		
 	<security:authentication-manager>
      <security:authentication-provider>
          <security:user-service>
               <security:user name="weather" password="w34th3r" authorities="ROLE_USER" />
-              </security:user-service>
+         </security:user-service>
      </security:authentication-provider>
 	</security:authentication-manager>
 	

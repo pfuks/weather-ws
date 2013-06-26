@@ -14,7 +14,13 @@
 			<ref bean="service" />
 		</property>
 		<property name="cities" ref="cities"/>
+		<property name="validator" ref="cityValidator"/>
 	</bean>
+	
+	<bean id="cityValidator" class="com.tieto.weather.vo.CityValidator">
+		<property name="cities" ref="cities"/>		
+	</bean>
+	
 
 	<!-- Mapping and adapter for RequestMapping annotations -->
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">

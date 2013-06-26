@@ -1,6 +1,9 @@
 package com.tieto.weather.impl;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -14,6 +17,8 @@ import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
 import com.tieto.weather.vo.CitiesVO;
+import com.tieto.weather.vo.CitiesValidator;
+import com.tieto.weather.vo.CityValidator;
 import com.tieto.weather.vo.WeatherResponseVO;
 
 /**
@@ -28,6 +33,7 @@ public class WeatherEndpointSOAP {
 	private WeatherResponseMapper responseMapper;
 	private WeatherService service;
 	private CitiesVO cities;
+	private CitiesValidator validator;
 	
 	public WeatherEndpointSOAP(ObjectFactory factory) {
 		this.factory = factory;
@@ -49,8 +55,11 @@ public class WeatherEndpointSOAP {
 		WeatherResponseVO response = new WeatherResponseVO();
 		WeatherResponse result;
 		
-		// TODO: validation is case-sensitive - it is not good :)
-		validationCities(weatherRequest);
+    	Errors errors = new BeanPropertyBindingResult(weatherRequest, "weatherRequest");
+    	ValidationUtils.invokeValidator(validator, weatherRequest.getCity(), errors);
+		
+    	// TODO: validation is case-sensitive - it is not good :)    	
+		//validationCities(weatherRequest);
 		
 		if(weatherRequest.getCity().isEmpty()) {
 			LoggerFactory.getLogger(WeatherEndpointSOAP.class).info("SOAP Request for all cities.");
@@ -102,4 +111,7 @@ public class WeatherEndpointSOAP {
 		this.cities = cities;
 	}
 
+	public void setValidator(CitiesValidator validator) {
+		this.validator = validator;
+	}
 }
