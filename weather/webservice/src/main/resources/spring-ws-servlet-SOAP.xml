@@ -25,11 +25,6 @@
 			<ref bean="service" />
 		</property>
 		<property name="cities" ref="cities"/>	
-		<property name="validator" ref="citiesValidator"/>	
-	</bean>
-
-	<bean id="citiesValidator" class="com.tieto.weather.vo.CitiesValidator">
-		<property name="cities" ref="cities"/>		
 	</bean>
 
 	<sws:interceptors>
