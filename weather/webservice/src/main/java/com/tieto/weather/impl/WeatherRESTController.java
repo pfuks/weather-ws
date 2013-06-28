@@ -2,9 +2,6 @@ package com.tieto.weather.impl;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,8 +13,7 @@ import com.tieto.weather.mapper.impl.WeatherResponseMapper;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
-import com.tieto.weather.vo.CitiesVO;
-import com.tieto.weather.vo.CityValidator;
+import com.tieto.weather.vo.CitiesVOFactory;
 import com.tieto.weather.vo.WeatherResponseVO;
 
 /**
@@ -29,8 +25,7 @@ public class WeatherRESTController {
 	private final ObjectFactory factory;
 	private WeatherResponseMapper responseMapper;
 	private WeatherService service;
-	private CitiesVO cities;
-	private CityValidator validator;
+	private CitiesVOFactory cities;
 	
 	public WeatherRESTController(ObjectFactory factory) {
 		this.factory = factory;
@@ -44,18 +39,13 @@ public class WeatherRESTController {
 	 * @throws ServerError 
 	 * @throws ClientError - for validation
 	 */
-    @RequestMapping(value="/rest/{city}", method=RequestMethod.GET)
+    @RequestMapping(value="/rest/{city}", method=RequestMethod.GET, consumes={"application/xml", "application/json"}) 
     @ResponseBody
     public WeatherResponse getCityWeather(@PathVariable("city") String city) throws ServerError, ClientError {
-            	
+            	// TODO break into 2
     	LoggerFactory.getLogger(WeatherRESTController.class).info("REST Request for city: " + city);
     	WeatherResponseVO response;
     	WeatherResponse result;
-    	   	
-    	Errors errors = new BeanPropertyBindingResult(city, "city");
-    	ValidationUtils.invokeValidator(validator, city, errors);
-    	
-    	validationCities(city);
     	
 		response = new WeatherResponseVO(service.getWeatherData(city));
     	
@@ -91,21 +81,7 @@ public class WeatherRESTController {
     	
     	return result;  
     }
-    
-	/**
-	 * Validation for Cities in REST request.
-	 * 
-	 * @param weatherRequest
-	 * @throws ClientError - for undefined city from configuration
-	 */
-	private void validationCities(String city) throws ClientError {
-		
-		if ( !cities.getCities().containsKey(city) ) {
-			throw new ClientError("Validation REST request - Undefined city!");
-		}
-				
-	}
-    
+       
     
 	public void setWeatherResponseMapper( WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;
@@ -115,11 +91,7 @@ public class WeatherRESTController {
 		this.service = service;
 	}
 	
-	public void setCities(CitiesVO cities) {
+	public void setCities(CitiesVOFactory cities) {
 		this.cities = cities;
-	}
-	
-	public void setValidator(CityValidator validator) {
-		this.validator = validator;
 	}
 }

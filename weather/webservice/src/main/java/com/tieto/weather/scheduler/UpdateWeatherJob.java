@@ -4,17 +4,17 @@ import org.slf4j.LoggerFactory;
 
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.service.WeatherServiceCached;
-import com.tieto.weather.vo.CitiesVO;
+import com.tieto.weather.vo.CitiesVOFactory;
 
 /**
- * Scheduler class used for periodical refresh of weather cache.
+ * Updating class used for periodical refresh of weather cache.
  */
-public class WeatherScheduler {
+public class UpdateWeatherJob {
 	
 	private WeatherServiceCached weatherService;
-	private CitiesVO cities;
+	private CitiesVOFactory cities;
 	
-	public WeatherScheduler(WeatherServiceCached weatherService, CitiesVO cities) throws ServerError {
+	public UpdateWeatherJob(WeatherServiceCached weatherService, CitiesVOFactory cities) throws ServerError {
 		this.weatherService = weatherService;
 		this.cities = cities;
 	}
@@ -30,7 +30,7 @@ public class WeatherScheduler {
 			try {
 				weatherService.updateWeatherData(city);
 			} catch (ServerError ex) {
-				LoggerFactory.getLogger(WeatherScheduler.class).error("Call Wunderground FAILED! for: " + city);
+				LoggerFactory.getLogger(UpdateWeatherJob.class).error("Call Wunderground FAILED! for: " + city);
 			}					
 		}
 	}

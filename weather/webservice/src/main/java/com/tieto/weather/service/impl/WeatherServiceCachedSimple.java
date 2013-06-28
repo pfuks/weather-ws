@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.mapper.impl.WundergroundResponseMapper;
 import com.tieto.weather.service.WeatherServiceCached;
-import com.tieto.weather.vo.CitiesVO;
+import com.tieto.weather.vo.CitiesVOFactory;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
@@ -21,7 +21,7 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 	private WundergroundResponseMapper mapper;
 	private String apikey;
 	private String urlString;
-	private CitiesVO cities;
+	private CitiesVOFactory cities;
 	private RestTemplate restTemplate;
 
 	@Cacheable(value = "weatherCache")
@@ -73,7 +73,7 @@ public class WeatherServiceCachedSimple implements WeatherServiceCached {
 		this.mapper = mapper;
 	}
 
-	public void setCities(CitiesVO cities) {
+	public void setCities(CitiesVOFactory cities) {
 		this.cities = cities;
 	}
 	

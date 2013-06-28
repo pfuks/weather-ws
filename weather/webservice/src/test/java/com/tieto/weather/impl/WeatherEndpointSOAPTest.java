@@ -20,12 +20,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.tieto.weather.error.ClientError;
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.impl.WeatherEndpointSOAP;
-import com.tieto.weather.scheduler.WeatherScheduler;
+import com.tieto.weather.scheduler.UpdateWeatherJob;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
-import com.tieto.weather.vo.CitiesVO;
+import com.tieto.weather.vo.CitiesVOFactory;
 import com.tieto.weather.vo.CityWeatherVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -40,11 +40,11 @@ public class WeatherEndpointSOAPTest {
     private WeatherService service;
     @ReplaceWithMock
     @Autowired
-    private CitiesVO cities;
+    private CitiesVOFactory cities;
     @Autowired
     private WeatherEndpointSOAP endpoint;
     @ReplaceWithMock
-    private WeatherScheduler wundergroundScheduler;
+    private UpdateWeatherJob wundergroundScheduler;
     
 	@After
 	public void tearDown() throws Exception {

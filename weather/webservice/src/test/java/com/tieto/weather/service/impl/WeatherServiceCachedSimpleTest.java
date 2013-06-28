@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.tieto.weather.error.ServerError;
 import com.tieto.weather.service.WeatherService;
-import com.tieto.weather.vo.CitiesVO;
+import com.tieto.weather.vo.CitiesVOFactory;
 import com.tieto.weather.vo.CityWeatherVO;
 import com.tieto.weather.wunderground.schema.Response;
 
@@ -29,7 +29,7 @@ public class WeatherServiceCachedSimpleTest {
 	@Autowired
     private WeatherService service;
     @Autowired
-    private CitiesVO cities;
+    private CitiesVOFactory cities;
     @Autowired
 	private RestTemplate restTemplate;
     private String URI;

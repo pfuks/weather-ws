@@ -21,10 +21,8 @@
 		<property name="weatherResponseMapper">
 			<bean class="com.tieto.weather.mapper.impl.WeatherResponseMapper" />
 		</property>
-		<property name="weatherService">
-			<ref bean="service" />
-		</property>
-		<property name="cities" ref="cities"/>	
+		<property name="weatherService" ref="service" />
+		<property name="cities" ref="citiesFactory"/>	
 	</bean>
 
 	<sws:interceptors>

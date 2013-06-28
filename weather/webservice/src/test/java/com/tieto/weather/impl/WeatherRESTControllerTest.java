@@ -18,11 +18,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.tieto.weather.error.ClientError;
 import com.tieto.weather.error.ServerError;
-import com.tieto.weather.scheduler.WeatherScheduler;
+import com.tieto.weather.scheduler.UpdateWeatherJob;
 import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
-import com.tieto.weather.vo.CitiesVO;
+import com.tieto.weather.vo.CitiesVOFactory;
 import com.tieto.weather.vo.CityWeatherVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,11 +37,11 @@ public class WeatherRESTControllerTest {
     private WeatherService service;
     @ReplaceWithMock
     @Autowired
-    private CitiesVO cities;
+    private CitiesVOFactory cities;
     @Autowired
     private WeatherRESTController controller;
     @ReplaceWithMock
-    private WeatherScheduler wundergroundScheduler;
+    private UpdateWeatherJob wundergroundScheduler;
     
     @Before
     public void setUp() throws ServerError {

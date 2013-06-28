@@ -1,9 +1,6 @@
 package com.tieto.weather.impl;
 
 import org.slf4j.LoggerFactory;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -16,9 +13,7 @@ import com.tieto.weather.schema.ObjectFactory;
 import com.tieto.weather.schema.WeatherRequest;
 import com.tieto.weather.schema.WeatherResponse;
 import com.tieto.weather.service.WeatherService;
-import com.tieto.weather.vo.CitiesVO;
-import com.tieto.weather.vo.CitiesValidator;
-import com.tieto.weather.vo.CityValidator;
+import com.tieto.weather.vo.CitiesVOFactory;
 import com.tieto.weather.vo.WeatherResponseVO;
 
 /**
@@ -32,8 +27,7 @@ public class WeatherEndpointSOAP {
 	private final ObjectFactory factory;
 	private WeatherResponseMapper responseMapper;
 	private WeatherService service;
-	private CitiesVO cities;
-	private CitiesValidator validator;
+	private CitiesVOFactory cities;
 	
 	public WeatherEndpointSOAP(ObjectFactory factory) {
 		this.factory = factory;
@@ -55,12 +49,6 @@ public class WeatherEndpointSOAP {
 		WeatherResponseVO response = new WeatherResponseVO();
 		WeatherResponse result;
 		
-    	Errors errors = new BeanPropertyBindingResult(weatherRequest, "weatherRequest");
-    	ValidationUtils.invokeValidator(validator, weatherRequest.getCity(), errors);
-		
-    	// TODO: validation is case-sensitive - it is not good :)    	
-		//validationCities(weatherRequest);
-		
 		if(weatherRequest.getCity().isEmpty()) {
 			LoggerFactory.getLogger(WeatherEndpointSOAP.class).info("SOAP Request for all cities.");
 			for (String city : cities.getCities().keySet()) {				
@@ -81,24 +69,6 @@ public class WeatherEndpointSOAP {
 	}
 	
 	
-	
-	/**
-	 * Validation for Cities in SOAP request.
-	 * 
-	 * @param weatherRequest
-	 * @throws ClientError - for undefined city from configuration
-	 */
-	private void validationCities(WeatherRequest weatherRequest) throws ClientError {
-		
-		for (String city : weatherRequest.getCity()) {
-			if ( !cities.getCities().containsKey(city) ) {
-				throw new ClientError("Validation SOAP request - Undefined city!");
-			}
-		}
-				
-	}
-	
-	
 	public void setWeatherResponseMapper( WeatherResponseMapper responseMapper) {
 		this.responseMapper = responseMapper;
 	}
@@ -107,11 +77,8 @@ public class WeatherEndpointSOAP {
 		this.service = service;
 	}
 	
-	public void setCities(CitiesVO cities) {
+	public void setCities(CitiesVOFactory cities) {
 		this.cities = cities;
 	}
 
-	public void setValidator(CitiesValidator validator) {
-		this.validator = validator;
-	}
 }

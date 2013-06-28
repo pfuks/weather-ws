@@ -33,7 +33,7 @@
 		<property name="wundergroundResponseMapper">
 			<bean class="com.tieto.weather.mapper.impl.WundergroundResponseMapper" />
 		</property>
-		<property name="cities" ref="cities"/>
+		<property name="cities" ref="citiesFactory"/>
 		<property name="apikey" value="${apikey}"/>
 		<property name="urlString" value="${urlString}"/>
 		<property name="restTemplate" ref="restTemplate"/>
@@ -62,28 +62,22 @@
 	
 	<!-- scheduler + configuration -->
 	
-	<bean id="wundergroundScheduler" class="com.tieto.weather.scheduler.WeatherScheduler" init-method="readWeathers">
+	<bean id="updateWeatherJob" class="com.tieto.weather.scheduler.UpdateWeatherJob" init-method="readWeathers">
 		<constructor-arg name="weatherService" ref="service"/>
-		<constructor-arg name="cities" ref="cities"/>
+		<constructor-arg name="cities" ref="citiesFactory"/>
 	</bean>	
 	
 	<task:scheduled-tasks>
-		<task:scheduled ref="wundergroundScheduler" method="readWeathers" initial-delay="${cache.time}" fixed-rate="${cache.time}"/>
+		<task:scheduled ref="updateWeatherJob" method="readWeathers" initial-delay="${cache.time}" fixed-rate="${cache.time}"/>
 	</task:scheduled-tasks>
 	
-	<!-- properties placeholder -->
+	<!-- properties placeholder -->	
 	
-	<context:property-placeholder location="classpath:config.properties"/>
+	<context:property-placeholder location="classpath:config.properties,classpath:cities.properties"/>
 
-	<bean id="cities" class="com.tieto.weather.vo.CitiesVO">
-		<constructor-arg>
-		  <map>
-			  <entry key="${city1.name}" value="${city1.country}"/>
-			  <entry key="${city2.name}" value="${city2.country}"/>
-			  <entry key="${city3.name}" value="${city3.country}"/>
-			  <entry key="${city4.name}" value="${city4.country}"/>
-		  </map>
- 		 </constructor-arg>
+
+	<bean id="citiesFactory" class="com.tieto.weather.vo.CitiesVOFactory">
+		<constructor-arg name="configCities" value="${cities}"/>
 	</bean>
 	
 	<!-- http authentication -->
