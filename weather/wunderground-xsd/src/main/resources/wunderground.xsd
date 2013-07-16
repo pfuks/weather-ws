@@ -188,6 +188,8 @@
 	<xs:element name="country" type="xs:string" />
 	<xs:element name="country_iso3166" type="xs:string" />
 	<xs:element name="zip" type="xs:string" />
+	<xs:element name="magic" type="xs:string" />
+	<xs:element name="wmo" type="xs:string" />
 	<xs:element name="latitude" type="xs:string" />
 	<xs:element name="longitude" type="xs:string" />
 	<xs:element name="elevation" type="xs:string" />
